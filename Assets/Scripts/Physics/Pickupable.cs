@@ -16,7 +16,7 @@ public class Pickupable : Grabbable
    public bool preserveGrabPosition = true;
    public bool preserveGrabRotation = true;
 
-   protected void Start()
+   protected virtual void Start()
    {
       rb = GetComponent<Rigidbody>();
    }
@@ -136,10 +136,28 @@ public class Pickupable : Grabbable
       return Vector3.zero;
    }
 
+   protected virtual bool ShouldTrackTarget()
+   {
+      return HasGrabber();
+   }
+
+   protected virtual float GetMaxForce()
+   {
+      return float.MaxValue;
+   }
+
+   protected virtual float GetMaxTorque()
+   {
+      return float.MaxValue;
+   }
+   protected virtual float GetSpringDistanceLimit()
+   {
+      return float.MaxValue;
+   }
 
    public virtual void FixedUpdate()
    {
-      if (HasGrabber())
+      if (ShouldTrackTarget())
       {
          Vector3 grabberPos = ComputeTargetPosition();
          Quaternion grabberRot = ComputeTargetRotation();
@@ -149,8 +167,19 @@ public class Pickupable : Grabbable
          Vector3 myPos = transform.position;
          Vector3 targetPos = ComputeTargetPosition();
          Vector3 targetVel = ComputeTargetVelocity();
-         Vector3 force = (targetPos - myPos) * positionalKp - (rb.velocity - targetVel) * positionalKd;
+         Vector3 displacement = (targetPos - myPos);
+         if (displacement.magnitude > GetSpringDistanceLimit())
+         {
+            displacement *= GetSpringDistanceLimit() / displacement.magnitude;
+         }
+         Vector3 force = displacement * positionalKp - (rb.velocity - targetVel) * positionalKd;
          force = force * rb.mass;
+
+         if (force.magnitude > GetMaxForce())
+         {
+            force *= GetMaxForce() / force.magnitude;
+         }
+
          rb.AddForce(force);
 
          Quaternion myQuat = transform.rotation;
@@ -185,6 +214,11 @@ public class Pickupable : Grabbable
             Vector3 torqueInTensorSpace = Vector3.Scale(angularAccelerationInTensorSpace, rb.inertiaTensor);
             Vector3 torqueInLocalSpace = rb.inertiaTensorRotation * torqueInTensorSpace;
             Vector3 torqueInWorldSpace = transform.TransformVector(torqueInLocalSpace);
+
+            if (torqueInWorldSpace.magnitude > GetMaxTorque())
+            {
+               torqueInWorldSpace *= GetMaxTorque() / torqueInWorldSpace.magnitude;
+            }
 
             rb.AddTorque(torqueInWorldSpace);
          }

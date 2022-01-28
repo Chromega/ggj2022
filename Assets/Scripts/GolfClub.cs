@@ -15,6 +15,19 @@ public class GolfClub : Pickupable
    Vector3 lastTargetPosition;
    Vector3 targetVelocity;
 
+   [HideInInspector]
+   public ClubRack clubRack;
+
+   bool magnetizeToRack = true;
+   Coroutine releasedCoroutine;
+
+   protected override void Start()
+   {
+      base.Start();
+
+      rb.useGravity = false;
+   }
+
    protected override Vector3 ComputeTargetPosition()
    {
       if (secondaryGrabber)
@@ -24,6 +37,10 @@ public class GolfClub : Pickupable
       else if (primaryGrabber)
       {
          return primaryGrabber.GetTargetPosition() + primaryGrabber.GetTargetRotation() * primaryGrabber.currentPosOffset;
+      }
+      else if (magnetizeToRack)
+      {
+         return clubRack.GetClubWorldPosition(this);
       }
       else
       {
@@ -50,6 +67,10 @@ public class GolfClub : Pickupable
       {
          return primaryGrabber.GetTargetRotation() * primaryGrabber.currentRotOffset;
       }
+      else if (magnetizeToRack)
+      {
+         return clubRack.GetClubWorldRotation(this);
+      }
       else
       {
          return transform.rotation;
@@ -58,12 +79,23 @@ public class GolfClub : Pickupable
 
    protected override Vector3 ComputeTargetVelocity()
    {
-      return targetVelocity;
+      if (magnetizeToRack)
+         return Vector3.zero;
+      else
+         return targetVelocity;
    }
 
    protected override Vector3 ComputeTargetAngularVelocity()
    {
-      return targetAngularVelocity;
+      if (magnetizeToRack)
+         return Vector3.zero;
+      else
+         return targetAngularVelocity;
+   }
+
+   protected override bool ShouldTrackTarget()
+   {
+      return HasGrabber() || magnetizeToRack;
    }
 
    public override void FixedUpdate()
@@ -109,9 +141,14 @@ public class GolfClub : Pickupable
       base.AddGrabber(grabber);
 
       visual.transform.parent = null;
-      gameObject.layer = 7;
-      foreach (Collider c in rb.GetComponentsInChildren<Collider>())
-         c.gameObject.layer = 7;
+      SetCollisionLayer(7);
+
+      if (releasedCoroutine != null)
+      {
+         StopCoroutine(releasedCoroutine);
+         releasedCoroutine = null;
+      }
+      magnetizeToRack = false;
    }
 
    public override void RemoveGrabber(Grabber grabber)
@@ -132,10 +169,17 @@ public class GolfClub : Pickupable
          visual.transform.localPosition = Vector3.zero;
          visual.transform.localRotation = Quaternion.identity;
          visual.transform.localScale = Vector3.one;
-         gameObject.layer = 0;
-         foreach (Collider c in rb.GetComponentsInChildren<Collider>())
-            c.gameObject.layer = 0;
+         SetCollisionLayer(0);
+
+         releasedCoroutine = StartCoroutine(OnReleased());
       }
+   }
+
+   void SetCollisionLayer(int layer)
+   {
+      gameObject.layer = layer;
+      foreach (Collider c in rb.GetComponentsInChildren<Collider>())
+         c.gameObject.layer = layer;
    }
 
    private void OnCollisionEnter(Collision collision)
@@ -167,6 +211,28 @@ public class GolfClub : Pickupable
          Debug.Log("3 wv prime " + newWorldVelocity);*/
 
          collision.rigidbody.velocity = newWorldVelocity;
+      }
+   }
+
+   IEnumerator OnReleased()
+   {
+      yield return new WaitForSeconds(3.0f);
+      rb.useGravity = false;
+      magnetizeToRack = true;
+      SetCollisionLayer(7);
+      yield return new WaitForSeconds(2.0f);
+      SetCollisionLayer(0);
+   }
+
+   protected override float GetSpringDistanceLimit()
+   {
+      if (magnetizeToRack)
+      {
+         return 1f;
+      }
+      else
+      {
+         return Mathf.Infinity;
       }
    }
 }
