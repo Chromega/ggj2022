@@ -15,6 +15,12 @@ public class VRControllerInput : MonoBehaviour
    public Side side;
    private List<InputDevice> qualifyingDevices;
 
+   bool primaryButtonDown;
+   bool lastPrimaryButtonDown;
+
+   bool secondaryButtonDown;
+   bool lastSecondaryButtonDown;
+
    private void Awake()
    {
       qualifyingDevices = new List<InputDevice>();
@@ -101,6 +107,29 @@ public class VRControllerInput : MonoBehaviour
       return false;
    }
 
+   bool GetPrimaryButton_Impl()
+   {
+      foreach (var device in qualifyingDevices)
+      {
+         bool button;
+         device.TryGetFeatureValue(CommonUsages.primaryButton, out button);
+         return button;
+      }
+      return false;
+   }
+
+   bool GetSecondaryButton_Impl()
+   {
+      foreach (var device in qualifyingDevices)
+      {
+         bool button;
+         device.TryGetFeatureValue(CommonUsages.secondaryButton, out button);
+         return button;
+      }
+      return false;
+   }
+
+
    public void DoHapticImpulse(float amplitude, float durationSeconds)
    {
       foreach (var device in qualifyingDevices)
@@ -119,5 +148,44 @@ public class VRControllerInput : MonoBehaviour
          stickPos += thisStickPos;
       }
       return stickPos;
+   }
+
+   private void Update()
+   {
+      lastPrimaryButtonDown = primaryButtonDown;
+      primaryButtonDown = GetPrimaryButton_Impl();
+
+      lastSecondaryButtonDown = secondaryButtonDown;
+      secondaryButtonDown = GetSecondaryButton_Impl();
+   }
+
+   public bool GetPrimaryButton()
+   {
+      return primaryButtonDown;
+   }
+
+   public bool GetPrimaryButtonDown()
+   {
+      return primaryButtonDown && !lastPrimaryButtonDown;
+   }
+
+   public bool GetPrimaryButtonUp()
+   {
+      return !primaryButtonDown && lastPrimaryButtonDown;
+   }
+
+   public bool GetSecondaryButton()
+   {
+      return secondaryButtonDown;
+   }
+
+   public bool GetSecondaryButtonDown()
+   {
+      return secondaryButtonDown && !lastSecondaryButtonDown;
+   }
+
+   public bool GetSecondaryButtonUp()
+   {
+      return !secondaryButtonDown && lastSecondaryButtonDown;
    }
 }

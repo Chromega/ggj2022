@@ -25,8 +25,14 @@ public class SphereGravitySource : GravitySource
       else
       {
          //Force goes down linearly on the interior
-         Vector3 force = surfaceGForce * displacement / surfaceRadius;
+         Vector3 force = surfaceGForce * (-9.81f) * displacement / surfaceRadius * rb.mass;
          return force;
       }
+   }
+
+   public override Vector3 ComputePlayerNormal(Vector3 position)
+   {
+      Vector3 displacement = position - transform.position;
+      return displacement.normalized;
    }
 }

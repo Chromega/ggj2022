@@ -5,6 +5,8 @@ using UnityEngine;
 public abstract class GravitySource : MonoBehaviour
 {
    protected abstract Vector3 ComputeForce(Rigidbody rb);
+
+   public abstract Vector3 ComputePlayerNormal(Vector3 position);
    
    protected virtual void Start()
    {
@@ -15,7 +17,8 @@ public abstract class GravitySource : MonoBehaviour
    {
       if (c.attachedRigidbody && !c.attachedRigidbody.isKinematic && c.attachedRigidbody.useGravity)
       {
-         c.attachedRigidbody.AddForce(ComputeForce(c.attachedRigidbody));
+         Vector3 force = ComputeForce(c.attachedRigidbody);
+         c.attachedRigidbody.AddForce(force);
       }
    }
 }
