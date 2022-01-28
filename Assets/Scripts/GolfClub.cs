@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class GolfClub : Pickupable
 {
-   public GameObject visual;
+   public GameObject rootToClone;
+
+   GameObject visual;
 
    Grabber primaryGrabber;
    Grabber secondaryGrabber;
@@ -26,6 +28,22 @@ public class GolfClub : Pickupable
       base.Start();
 
       rb.useGravity = false;
+
+      visual = Instantiate(rootToClone);
+      visual.name = "Visual";
+      foreach (Collider c in visual.GetComponentsInChildren<Collider>())
+      {
+         c.enabled = false;
+      }
+      visual.transform.parent = transform;
+      visual.transform.localPosition = Vector3.zero;
+      visual.transform.localRotation = Quaternion.identity;
+      visual.transform.localScale = Vector3.one;
+
+      foreach (MeshRenderer r in rootToClone.GetComponentsInChildren<MeshRenderer>())
+      {
+         r.enabled = false;
+      }
    }
 
    protected override Vector3 ComputeTargetPosition()
@@ -170,6 +188,8 @@ public class GolfClub : Pickupable
          visual.transform.localRotation = Quaternion.identity;
          visual.transform.localScale = Vector3.one;
          SetCollisionLayer(0);
+
+
 
          releasedCoroutine = StartCoroutine(OnReleased());
       }
