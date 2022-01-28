@@ -110,7 +110,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.07
+  m_Radius: 0.2
   m_Center: {x: -0.04, y: -0.03, z: 0}
 --- !u!1 &6610483345480653307
 GameObject:
@@ -409,7 +409,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.07
+  m_Radius: 0.2
   m_Center: {x: -0.04, y: -0.03, z: 0}
 --- !u!1001 &6610483344865881624
 PrefabInstance:

@@ -15,7 +15,7 @@ public class PolygonalSphereGravitySource : GravitySource
 
       RaycastHit hitInfo;
       Vector3 outwardGravityDirection;
-      if (Physics.Raycast(rb.position, -displacement, out hitInfo, 99999f, 1 << 8))
+      if (Physics.Raycast(rb.position, -displacement, out hitInfo, distance, 1 << 8))
       {
          Vector3 normal = hitInfo.normal;
          float angleDeflection = Vector3.Angle(displacement, normal); //degrees??? rads???
@@ -25,7 +25,7 @@ public class PolygonalSphereGravitySource : GravitySource
          }
          else
          {
-            outwardGravityDirection = normal;
+            outwardGravityDirection = displacement;
          }
       }
       else
@@ -48,7 +48,7 @@ public class PolygonalSphereGravitySource : GravitySource
       else
       {
          //Force goes down linearly on the interior
-         Vector3 force = surfaceGForce * (-9.81f) * distance / surfaceRadius * outwardGravityDirection;
+         Vector3 force = surfaceGForce * (-9.81f) * distance / surfaceRadius * outwardGravityDirection * rb.mass;
          return force;
       }
    }

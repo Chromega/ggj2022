@@ -15,7 +15,8 @@ public abstract class GravitySource : MonoBehaviour
    {
       if (c.attachedRigidbody && !c.attachedRigidbody.isKinematic && c.attachedRigidbody.useGravity)
       {
-         c.attachedRigidbody.AddForce(ComputeForce(c.attachedRigidbody));
+         Vector3 force = ComputeForce(c.attachedRigidbody);
+         c.attachedRigidbody.AddForce(force);
       }
    }
 }

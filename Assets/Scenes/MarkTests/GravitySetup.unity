@@ -292,6 +292,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GolfBall (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8655648276622337218, guid: 86c0c04c6aee4b1458c82c73812aca98,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8655648276622337220, guid: 86c0c04c6aee4b1458c82c73812aca98,
         type: 3}
       propertyPath: m_RootOrder
@@ -360,6 +365,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GolfBall (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8655648276622337218, guid: 86c0c04c6aee4b1458c82c73812aca98,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8655648276622337220, guid: 86c0c04c6aee4b1458c82c73812aca98,
         type: 3}
@@ -746,6 +756,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5309015140409481237, guid: cd534ed825cdb83419c9ae11a527b5ce,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5309015140918286985, guid: cd534ed825cdb83419c9ae11a527b5ce,
         type: 3}
       propertyPath: m_RootOrder
@@ -805,6 +820,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GolfClub
+      objectReference: {fileID: 0}
+    - target: {fileID: 5309015141076674683, guid: cd534ed825cdb83419c9ae11a527b5ce,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd534ed825cdb83419c9ae11a527b5ce, type: 3}
