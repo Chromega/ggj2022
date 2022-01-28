@@ -14,4 +14,9 @@ public class StandardGravitySource : GravitySource
    {
       throw new NotImplementedException();
    }
+
+   public override Vector3 ComputePlayerNormal(Vector3 position)
+   {
+      return Vector3.up;
+   }
 }

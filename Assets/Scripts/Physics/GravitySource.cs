@@ -5,6 +5,8 @@ using UnityEngine;
 public abstract class GravitySource : MonoBehaviour
 {
    protected abstract Vector3 ComputeForce(Rigidbody rb);
+
+   public abstract Vector3 ComputePlayerNormal(Vector3 position);
    
    protected virtual void Start()
    {

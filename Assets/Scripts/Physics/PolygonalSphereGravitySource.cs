@@ -52,4 +52,10 @@ public class PolygonalSphereGravitySource : GravitySource
          return force;
       }
    }
+
+   public override Vector3 ComputePlayerNormal(Vector3 position)
+   {
+      Vector3 displacement = position - transform.position;
+      return displacement.normalized;
+   }
 }
