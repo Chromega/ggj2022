@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GolfBall : MonoBehaviour
 {
-   [HideInInspector]
    public Planetoid lastPlanetoid;
 
    // Start is called before the first frame update
