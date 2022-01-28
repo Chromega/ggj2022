@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GolfClub : Pickupable
 {
+   public GameObject visual;
 
    Grabber primaryGrabber;
    Grabber secondaryGrabber;
@@ -83,6 +84,16 @@ public class GolfClub : Pickupable
       lastTargetPosition = targetPosition;
 
       base.FixedUpdate();
+
+   }
+
+   public void Update()
+   {
+      if (HasGrabber())
+      {
+         visual.transform.position = ComputeTargetPosition();
+         visual.transform.rotation = ComputeTargetRotation();
+      }
    }
 
    public override void AddGrabber(Grabber grabber)
@@ -96,6 +107,11 @@ public class GolfClub : Pickupable
          secondaryGrabber = grabber;
 
       base.AddGrabber(grabber);
+
+      visual.transform.parent = null;
+      gameObject.layer = 7;
+      foreach (Collider c in rb.GetComponentsInChildren<Collider>())
+         c.gameObject.layer = 7;
    }
 
    public override void RemoveGrabber(Grabber grabber)
@@ -109,6 +125,17 @@ public class GolfClub : Pickupable
          secondaryGrabber = null;
 
       base.RemoveGrabber(grabber);
+
+      if (!HasGrabber())
+      {
+         visual.transform.parent = transform;
+         visual.transform.localPosition = Vector3.zero;
+         visual.transform.localRotation = Quaternion.identity;
+         visual.transform.localScale = Vector3.one;
+         gameObject.layer = 0;
+         foreach (Collider c in rb.GetComponentsInChildren<Collider>())
+            c.gameObject.layer = 0;
+      }
    }
 
    private void OnCollisionEnter(Collision collision)
