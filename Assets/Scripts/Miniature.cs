@@ -7,9 +7,10 @@ public class Miniature : Pickupable
    Planetoid currentPlanetoid = null;
 
    public GameObject playerIcon;
-   GameObject planetoidCopy;
+   Planetoid planetoidCopy;
    GolfBall golfBallCopy;
    public Material planetMaterial;
+   public TMPro.TextMeshProUGUI planetProgressText;
 
    protected override void Start()
    {
@@ -40,13 +41,18 @@ public class Miniature : Pickupable
       playerIcon.transform.localPosition = playerPlanetoidPos;
       playerIcon.transform.localRotation = playerPlanetoidRot;
 
+      int numGoals;
+      int numCollectedGoals;
+      currentPlanetoid.GetGoalProgress(out numCollectedGoals, out numGoals);
+      planetProgressText.text = numCollectedGoals + "/" + numGoals;
+
       base.Update();
    }
 
-   void UpdatePlanetoid(Planetoid planetoid)
+   void UpdatePlanetoid(Planetoid planetoid, bool force=false)
    {
 
-      if (planetoid == currentPlanetoid)
+      if (planetoid == currentPlanetoid && !force)
          return;
 
       currentPlanetoid = planetoid;
@@ -54,9 +60,12 @@ public class Miniature : Pickupable
       playerIcon.transform.parent = transform;
       golfBallCopy.transform.parent = transform;
       if (planetoidCopy)
-         Destroy(planetoidCopy);
+      {
+         planetoidCopy.OnGoalCollected -= OnGoalCollected;
+         Destroy(planetoidCopy.gameObject);
+      }
 
-      planetoidCopy = Instantiate(planetoid.gameObject);
+      planetoidCopy = Instantiate(planetoid.gameObject).GetComponent<Planetoid>();
       planetoidCopy.transform.parent = transform;
       planetoidCopy.transform.localPosition = Vector3.zero;
       planetoidCopy.transform.localRotation = Quaternion.identity;
@@ -73,10 +82,17 @@ public class Miniature : Pickupable
          c.enabled = false;
       }
       planetoidCopy.GetComponent<Collider>().enabled = true;
-      planetoidCopy.layer = 9; //only grabbable
+      planetoidCopy.gameObject.layer = 9; //only grabbable
 
       golfBallCopy.transform.parent = planetoidCopy.transform;
       golfBallCopy.transform.localScale = 50*Vector3.one;
       playerIcon.transform.parent = planetoidCopy.transform;
+
+      planetoid.OnGoalCollected += OnGoalCollected;
+   }
+
+   void OnGoalCollected()
+   {
+      UpdatePlanetoid(currentPlanetoid, true);
    }
 }

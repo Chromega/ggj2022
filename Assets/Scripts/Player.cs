@@ -58,7 +58,6 @@ public class Player : MonoBehaviour
       if (snapTurnDebounce > 0f)
       {
          snapTurnDebounce -= Time.deltaTime;
-         snapTurnDebounce = 0;
       }
 
   }

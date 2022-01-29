@@ -6,7 +6,7 @@ public class GolfBall : MonoBehaviour
 {
    public Planetoid lastPlanetoid;
    public TrailRenderer trail;
-   public Rigidbody rigidbody;
+   public Rigidbody rb;
 
    float chargeTime;
    
@@ -21,7 +21,7 @@ public class GolfBall : MonoBehaviour
       {
          Vector3 direction = Camera.main.transform.forward;
 
-         rigidbody.AddForce(direction*chargeTime*3f, ForceMode.Impulse);
+         rb.AddForce(direction*chargeTime*3f, ForceMode.Impulse);
          chargeTime = 0;
       }
    }
