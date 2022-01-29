@@ -42,6 +42,13 @@ public class GameMgr : MonoBehaviour
 
    public GolfBall GetClosestBallToPlayer()
    {
+      // handle the case of initial spawn, where the ghost ball isn't active
+      if (!ghostBall.gameObject.activeSelf)
+      {
+         return golfBall;
+      }
+
+      // return the closest ball the player (this is how we determine which ball gets "hit"
       float golfBallDist = Vector3.Distance(player.transform.position, golfBall.transform.position);
       float ghostBallDist = Vector3.Distance(player.transform.position, ghostBall.transform.position);
       if (golfBallDist < ghostBallDist)
