@@ -157,7 +157,7 @@ public class Pickupable : Grabbable
 
    public virtual void FixedUpdate()
    {
-      if (ShouldTrackTarget())
+      if (ShouldTrackTarget() && !rb.isKinematic)
       {
          Vector3 grabberPos = ComputeTargetPosition();
          Quaternion grabberRot = ComputeTargetRotation();
@@ -187,41 +187,42 @@ public class Pickupable : Grabbable
          Vector3 targetAngularVel = ComputeTargetAngularVelocity(); ;
 
          Quaternion diff = targetRot * Quaternion.Inverse(myQuat);
+         
+         Vector3 diffAxis;
+         float diffAngle;
+         diff.ToAngleAxis(out diffAngle, out diffAxis);
+         while (diffAngle > 180)
+            diffAngle -= 360;
+         while (diffAngle < -180)
+            diffAngle += 360;
 
-         if (rb.isKinematic)
+         //Axis becomes NaN
+         if (Mathf.Abs(diffAngle) < .01f)
+            return;
+
+         // the first multiplier is the porportional; the second is for dampening
+         Vector3 angularAccelerationInWorldSpace = diffAngle * Mathf.Deg2Rad * diffAxis * rotationalKp - (rb.angularVelocity - targetAngularVel) * rotationalKd;
+         Vector3 angularAccelerationInLocalSpace = transform.InverseTransformVector(angularAccelerationInWorldSpace);
+         Vector3 angularAccelerationInTensorSpace = Quaternion.Inverse(rb.inertiaTensorRotation) * angularAccelerationInLocalSpace;
+         Vector3 torqueInTensorSpace = Vector3.Scale(angularAccelerationInTensorSpace, rb.inertiaTensor);
+         Vector3 torqueInLocalSpace = rb.inertiaTensorRotation * torqueInTensorSpace;
+         Vector3 torqueInWorldSpace = transform.TransformVector(torqueInLocalSpace);
+
+         if (torqueInWorldSpace.magnitude > GetMaxTorque())
          {
-            rb.position = targetPos;
-            rb.rotation = targetRot;
+            torqueInWorldSpace *= GetMaxTorque() / torqueInWorldSpace.magnitude;
          }
-         else
-         {
-            Vector3 diffAxis;
-            float diffAngle;
-            diff.ToAngleAxis(out diffAngle, out diffAxis);
-            while (diffAngle > 180)
-               diffAngle -= 360;
-            while (diffAngle < -180)
-               diffAngle += 360;
 
-            //Axis becomes NaN
-            if (Mathf.Abs(diffAngle) < .01f)
-               return;
+         rb.AddTorque(torqueInWorldSpace);
+      }
+   }
 
-            // the first multiplier is the porportional; the second is for dampening
-            Vector3 angularAccelerationInWorldSpace = diffAngle * Mathf.Deg2Rad * diffAxis * rotationalKp - (rb.angularVelocity - targetAngularVel) * rotationalKd;
-            Vector3 angularAccelerationInLocalSpace = transform.InverseTransformVector(angularAccelerationInWorldSpace);
-            Vector3 angularAccelerationInTensorSpace = Quaternion.Inverse(rb.inertiaTensorRotation) * angularAccelerationInLocalSpace;
-            Vector3 torqueInTensorSpace = Vector3.Scale(angularAccelerationInTensorSpace, rb.inertiaTensor);
-            Vector3 torqueInLocalSpace = rb.inertiaTensorRotation * torqueInTensorSpace;
-            Vector3 torqueInWorldSpace = transform.TransformVector(torqueInLocalSpace);
-
-            if (torqueInWorldSpace.magnitude > GetMaxTorque())
-            {
-               torqueInWorldSpace *= GetMaxTorque() / torqueInWorldSpace.magnitude;
-            }
-
-            rb.AddTorque(torqueInWorldSpace);
-         }
+   protected virtual void Update()
+   {
+      if (ShouldTrackTarget() && rb.isKinematic)
+      {
+         rb.position = ComputeTargetPosition();
+         rb.rotation = ComputeTargetRotation();
       }
    }
 

@@ -137,13 +137,15 @@ public class GolfClub : Pickupable
 
    }
 
-   public void Update()
+   protected override void Update()
    {
       if (HasGrabber())
       {
          visual.transform.position = ComputeTargetPosition();
          visual.transform.rotation = ComputeTargetRotation();
       }
+
+      base.Update();
    }
 
    public override void AddGrabber(Grabber grabber)

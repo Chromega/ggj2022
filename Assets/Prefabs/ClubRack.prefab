@@ -156,6 +156,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6405722710617619696}
     m_Modifications:
+    - target: {fileID: 5309015139531310171, guid: cd534ed825cdb83419c9ae11a527b5ce,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.012
+      objectReference: {fileID: 0}
     - target: {fileID: 5309015140918286985, guid: cd534ed825cdb83419c9ae11a527b5ce,
         type: 3}
       propertyPath: m_RootOrder
@@ -216,10 +221,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: GolfClub
       objectReference: {fileID: 0}
-    - target: {fileID: 5309015140918286987, guid: cd534ed825cdb83419c9ae11a527b5ce,
+    - target: {fileID: 5415998327861033282, guid: cd534ed825cdb83419c9ae11a527b5ce,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5415998327861033282, guid: cd534ed825cdb83419c9ae11a527b5ce,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.64
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd534ed825cdb83419c9ae11a527b5ce, type: 3}
@@ -248,31 +258,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6405722710617619696}
     m_Modifications:
-    - target: {fileID: 133264538, guid: cd534ed825cdb83419c9ae11a527b5ce, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 208406825, guid: cd534ed825cdb83419c9ae11a527b5ce, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 407742552, guid: cd534ed825cdb83419c9ae11a527b5ce, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 407742552, guid: cd534ed825cdb83419c9ae11a527b5ce, type: 3}
+    - target: {fileID: 5309015139531310171, guid: cd534ed825cdb83419c9ae11a527b5ce,
+        type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.643
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5309015139531310171, guid: cd534ed825cdb83419c9ae11a527b5ce,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 5309015140409481239, guid: cd534ed825cdb83419c9ae11a527b5ce,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.4
+      value: 0.605
       objectReference: {fileID: 0}
     - target: {fileID: 5309015140918286985, guid: cd534ed825cdb83419c9ae11a527b5ce,
         type: 3}
@@ -334,15 +328,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: GolfClub (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 5309015141076674685, guid: cd534ed825cdb83419c9ae11a527b5ce,
+    - target: {fileID: 5415998327861033282, guid: cd534ed825cdb83419c9ae11a527b5ce,
         type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.06
+      propertyPath: m_LocalScale.y
+      value: 0.8
       objectReference: {fileID: 0}
-    - target: {fileID: 5309015141076674685, guid: cd534ed825cdb83419c9ae11a527b5ce,
+    - target: {fileID: 5415998327861033282, guid: cd534ed825cdb83419c9ae11a527b5ce,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.643
+      value: 0.43
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd534ed825cdb83419c9ae11a527b5ce, type: 3}
@@ -371,32 +365,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6405722710617619696}
     m_Modifications:
-    - target: {fileID: 133264538, guid: cd534ed825cdb83419c9ae11a527b5ce, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 208406825, guid: cd534ed825cdb83419c9ae11a527b5ce, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 407742552, guid: cd534ed825cdb83419c9ae11a527b5ce, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 407742552, guid: cd534ed825cdb83419c9ae11a527b5ce, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.543
-      objectReference: {fileID: 0}
-    - target: {fileID: 5309015139531310171, guid: cd534ed825cdb83419c9ae11a527b5ce,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 5309015140409481239, guid: cd534ed825cdb83419c9ae11a527b5ce,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.2
-      objectReference: {fileID: 0}
     - target: {fileID: 5309015140918286985, guid: cd534ed825cdb83419c9ae11a527b5ce,
         type: 3}
       propertyPath: m_RootOrder
@@ -456,21 +424,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GolfClub (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5309015140918286987, guid: cd534ed825cdb83419c9ae11a527b5ce,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5309015141076674685, guid: cd534ed825cdb83419c9ae11a527b5ce,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 5309015141076674685, guid: cd534ed825cdb83419c9ae11a527b5ce,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.543
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd534ed825cdb83419c9ae11a527b5ce, type: 3}

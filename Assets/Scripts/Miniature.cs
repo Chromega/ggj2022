@@ -20,7 +20,7 @@ public class Miniature : Pickupable
       golfBallCopy.GetComponent<Rigidbody>().isKinematic = true;
    }
 
-   private void Update()
+   protected override void Update()
    {
       UpdatePlanetoid(GameMgr.Instance.golfBall.lastPlanetoid);
 
@@ -38,6 +38,8 @@ public class Miniature : Pickupable
       Quaternion playerPlanetoidRot = Quaternion.Inverse(currentPlanetoid.transform.rotation) * playerWorldRot;
       playerIcon.transform.localPosition = playerPlanetoidPos;
       playerIcon.transform.localRotation = playerPlanetoidRot;
+
+      base.Update();
    }
 
    void UpdatePlanetoid(Planetoid planetoid)
@@ -70,9 +72,10 @@ public class Miniature : Pickupable
          c.enabled = false;
       }
       planetoidCopy.GetComponent<Collider>().enabled = true;
+      planetoidCopy.layer = 9; //only grabbable
 
       golfBallCopy.transform.parent = planetoidCopy.transform;
-      golfBallCopy.transform.localScale = 4*Vector3.one;
+      golfBallCopy.transform.localScale = 50*Vector3.one;
       playerIcon.transform.parent = planetoidCopy.transform;
    }
 }
