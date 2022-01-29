@@ -102,8 +102,9 @@ public class GolfBall : MonoBehaviour
    {
       if (collision.collider.gameObject.layer == 8) //planetoid
       {
-         lastPlanetoid = collision.collider.gameObject.GetComponent<Planetoid>();
-      } else if (collision.collider.gameObject.layer == 7) //golf club
+         lastPlanetoid = collision.collider.gameObject.GetComponentInParent<Planetoid>();
+      }
+      else if (collision.collider.gameObject.layer == 7) //golf club
       {
          GetComponent<Rigidbody>().useGravity = true;
       }
@@ -113,10 +114,10 @@ public class GolfBall : MonoBehaviour
    {
       Rigidbody rb = GetComponent<Rigidbody>();
       transform.position = GameMgr.Instance.player.GetBallStartPosition();
-      transform.Find("Trail").GetComponent<TrailRenderer>().Clear();
       rb.velocity = Vector3.zero;
       rb.angularVelocity = Vector3.zero;
       rb.useGravity = false;
+      trail.Clear();
    }
 
    private void OnTriggerStay(Collider other)
