@@ -100,6 +100,8 @@ public class Player : MonoBehaviour
       rb.position = worldPosition;
       rb.velocity = Vector3.zero;
       rb.angularVelocity = Vector3.zero;
+
+      ball.transform.Find("Trail").GetComponent<TrailRenderer>().Clear();
    }
    void DoReload()
    {
