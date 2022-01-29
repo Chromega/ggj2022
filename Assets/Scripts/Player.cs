@@ -7,14 +7,40 @@ public class Player : MonoBehaviour
 {
    public VRControllerInput leftController;
    public VRControllerInput rightController;
+
    public float snapTurnDeadZone = 0.125f;
    public float snapTurnDebounceTimeSeconds = 1f;
    float snapTurnDebounce = 0f;
+
+   public GameObject playerVR;
+   public GameObject playerNonVR;
+   bool isVREnabled = false;
 
    // Start is called before the first frame update
    void Start()
    {
 
+      // Enable VR or non-VR modes
+      var inputDevices = new List<UnityEngine.XR.InputDevice>();
+      UnityEngine.XR.InputDevices.GetDevices(inputDevices);
+      if (inputDevices.Count == 0)
+      {
+         isVREnabled = false;
+         
+      } else
+      {
+         isVREnabled = true;
+         
+      }
+      if (isVREnabled)
+      {
+         // no VR headset
+         GameObject.Find("PlayerVR").SetActive(false);
+      } else
+      {
+         // no VR headset
+         GameObject.Find("PlayerNonVR").SetActive(false);
+      }
    }
 
    // Update is called once per frame
@@ -49,7 +75,6 @@ public class Player : MonoBehaviour
 
    void DoSnapTurn(float inputX)
    {
-      Debug.Log(snapTurnDebounce);
       if (snapTurnDebounce <= 0f)
       {
          transform.Rotate(0, Mathf.Sign(inputX)*45, 0);
