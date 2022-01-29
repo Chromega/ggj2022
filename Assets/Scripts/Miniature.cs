@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class Miniature : Pickupable
 {
+   [System.Serializable]
+   public class MaterialSubstitution
+   {
+      public Material original;
+      public Material substitute;
+   }
+
    Planetoid currentPlanetoid = null;
 
    public GameObject playerIcon;
    Planetoid planetoidCopy;
    GolfBall golfBallCopy;
-   public Material planetMaterial;
+
+   public MaterialSubstitution[] materialSubstitutions;
+
    public TMPro.TextMeshProUGUI planetProgressText;
 
    protected override void Start()
@@ -70,9 +79,21 @@ public class Miniature : Pickupable
       planetoidCopy.transform.parent = transform;
       planetoidCopy.transform.localPosition = Vector3.zero;
       planetoidCopy.transform.localRotation = Quaternion.identity;
-      planetoidCopy.transform.localScale = .002f*Vector3.one;
+      planetoidCopy.transform.localScale = .02f*Vector3.one;
 
-      planetoidCopy.GetComponent<MeshRenderer>().sharedMaterial = planetMaterial;
+
+
+      foreach (MeshRenderer r in planetoidCopy.GetComponentsInChildren<MeshRenderer>())
+      {
+         //Gross!  but want to skip reskinning goals
+         if (r.name == "White_Dwarf")
+            continue;
+         foreach (MaterialSubstitution ms in materialSubstitutions)
+         {
+            if (r.sharedMaterial = ms.original)
+               r.sharedMaterial = ms.substitute;
+         }
+      }
 
       foreach (Rigidbody rb in planetoidCopy.GetComponentsInChildren<Rigidbody>())
       {
@@ -86,7 +107,7 @@ public class Miniature : Pickupable
       planetoidCopy.gameObject.layer = 9; //only grabbable
 
       golfBallCopy.transform.parent = planetoidCopy.transform;
-      golfBallCopy.transform.localScale = 50*Vector3.one;
+      golfBallCopy.transform.localScale = 5*Vector3.one;
       playerIcon.transform.parent = planetoidCopy.transform;
 
       planetoid.OnGoalCollected += OnGoalCollected;
