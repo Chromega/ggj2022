@@ -142,7 +142,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 40
+  m_Radius: 30
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1480237487615504299
 MonoBehaviour:
@@ -159,7 +159,7 @@ MonoBehaviour:
   canDoEntryBurn: 1
   surfaceRadius: 10
   surfaceGForce: 1
-  burnRadius: 30
+  burnRadius: 20
 --- !u!1 &3408821054528895819
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,6 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravitySource: {fileID: 1480237487615504299}
+  isMiniature: 0
 --- !u!135 &8212957628281675408
 SphereCollider:
   m_ObjectHideFlags: 0
