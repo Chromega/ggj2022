@@ -13,7 +13,42 @@ public class GolfBall : MonoBehaviour
    float chargeTime;
 
    float burnTimeRemaining;
-   
+
+   // Use to calculate spawning a cloned ghost ball for convenience
+   public float timeBeforeNewBallSpawns;
+   Coroutine releasedCoroutine;
+   float prevDistToPlayer = 0f;
+
+   IEnumerator SpawnGhostBall()
+   {
+      yield return new WaitForSeconds(timeBeforeNewBallSpawns);
+      GolfBall ghostBall = GameMgr.Instance.GetGhostBall();
+      ghostBall.gameObject.SetActive(true);
+      ghostBall.Reset();
+   }
+
+   bool isClosestBallToPlayer()
+   {
+      GolfBall closestBall = GameMgr.Instance.GetClosestBallToPlayer();
+      return GameObject.ReferenceEquals(gameObject, closestBall.gameObject);
+   }
+
+   bool isActiveBall()
+   {
+      GolfBall gb = GameMgr.Instance.golfBall;
+      return GameObject.ReferenceEquals(gameObject, gb.gameObject);
+   }
+
+   public void DelaySpawnGhost()
+   {
+      if (releasedCoroutine != null)
+      {
+         StopCoroutine(releasedCoroutine);
+         releasedCoroutine = null;
+      }
+      releasedCoroutine = StartCoroutine(SpawnGhostBall());
+   }
+
    // Update is called once per frame
    void Update()
    {
@@ -21,19 +56,37 @@ public class GolfBall : MonoBehaviour
       {
          chargeTime += Time.deltaTime;
       }
-      if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.Mouse2))
+      if (isClosestBallToPlayer() && (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.Mouse2)))
       {
+         // Hit the golf ball
          Vector3 direction = Camera.main.transform.forward;
-
-         rb.AddForce(direction*chargeTime*3f, ForceMode.Impulse);
+         rb.AddForce(direction * chargeTime * 3f, ForceMode.Impulse);
          chargeTime = 0;
+
+         // Enable the golf ball to have gravity
          GetComponent<Rigidbody>().useGravity = true;
+
+         // Set this ball as the active ball, and the other ball as the ghost ball
+         GolfBall otherBall = GameMgr.Instance.GetOtherBall(this);
+         GameMgr.Instance.golfBall = this;
+         GameMgr.Instance.SetGhostBall(otherBall);
       }
 
       var emission = entryBurnFx.emission;
       emission.rateOverDistance = burnTimeRemaining > 0.0f ? 10 : 0;
 
       burnTimeRemaining -= Time.deltaTime;
+
+      if (isActiveBall())
+      {
+         float distToPlayer = Vector3.Distance(GameMgr.Instance.player.transform.position, transform.position);
+         if (prevDistToPlayer < 3f && distToPlayer > 3f)
+         {
+            // spawn the ghost ball back at the original player
+            DelaySpawnGhost();
+         }
+         prevDistToPlayer = distToPlayer;
+      }
    }
 
    private void FixedUpdate()
@@ -58,8 +111,12 @@ public class GolfBall : MonoBehaviour
 
    public void Reset()
    {
-      GetComponent<Rigidbody>().useGravity = false;
+      Rigidbody rb = GetComponent<Rigidbody>();
+      transform.position = GameMgr.Instance.player.GetBallStartPosition();
       transform.Find("Trail").GetComponent<TrailRenderer>().Clear();
+      rb.velocity = Vector3.zero;
+      rb.angularVelocity = Vector3.zero;
+      rb.useGravity = false;
    }
 
    private void OnTriggerStay(Collider other)

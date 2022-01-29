@@ -10,6 +10,9 @@ public class GameMgr : MonoBehaviour
    public Player player;
    List<Planetoid> planetoids;
 
+   // The ghost golf ball is the 'reserve' ball. We will spawn it shortly after you hit your original ball.
+   GolfBall ghostBall;
+
    private void Awake()
    {
       Instance = this;
@@ -21,5 +24,43 @@ public class GameMgr : MonoBehaviour
          Instance = null;
    }
 
-   //public void 
+   public GolfBall GetGhostBall()
+   {
+      return ghostBall;
+   }
+
+   public void SetGhostBall(GolfBall gb)
+   {
+      ghostBall = gb;
+   }
+
+   void Start()
+   {
+      ghostBall = Instantiate(golfBall, transform.parent);
+      ghostBall.gameObject.SetActive(false);
+   }
+
+   public GolfBall GetClosestBallToPlayer()
+   {
+      float golfBallDist = Vector3.Distance(player.transform.position, golfBall.transform.position);
+      float ghostBallDist = Vector3.Distance(player.transform.position, ghostBall.transform.position);
+      if (golfBallDist < ghostBallDist)
+      {
+         return golfBall;
+      } else
+      {
+         return ghostBall;
+      }
+   }
+
+   public GolfBall GetOtherBall(GolfBall gb)
+   {
+      if (GameObject.ReferenceEquals(golfBall.gameObject, gb.gameObject))
+      {
+         return ghostBall;
+      } else
+      {
+         return golfBall;
+      }
+   }
 }
