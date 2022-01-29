@@ -101,7 +101,8 @@ public class Player : MonoBehaviour
       rb.velocity = Vector3.zero;
       rb.angularVelocity = Vector3.zero;
 
-      ball.Reset();
+      ball.Reset(); // sets active to be true
+      GameMgr.Instance.GetGhostBall().gameObject.SetActive(false); // disable ghost ball
    }
    void DoReload()
    {

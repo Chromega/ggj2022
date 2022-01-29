@@ -20,6 +20,8 @@ public class GolfBall : MonoBehaviour
    public float distanceBeforeGhostBallSpawns = 3f;
    Coroutine releasedCoroutine;
    float prevDistToPlayer = 0f;
+   public Material ghostMaterial;
+   Material originalMaterial;
 
    IEnumerator SpawnGhostBall()
    {
@@ -58,6 +60,7 @@ public class GolfBall : MonoBehaviour
       GameMgr.Instance.golfBall = this;
       GameMgr.Instance.SetGhostBall(otherBall);
       otherBall.gameObject.SetActive(false);
+      gameObject.SetActive(true);
    }
 
    // Update is called once per frame
@@ -129,6 +132,7 @@ public class GolfBall : MonoBehaviour
       rb.velocity = Vector3.zero;
       rb.angularVelocity = Vector3.zero;
       rb.useGravity = false;
+      gameObject.SetActive(true);
       trail.Clear();
    }
 
