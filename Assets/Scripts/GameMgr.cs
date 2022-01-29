@@ -8,7 +8,7 @@ public class GameMgr : MonoBehaviour
 
    public GolfBall golfBall;
    public Player player;
-   List<Planetoid> planetoids;
+   List<Planetoid> planetoids = new List<Planetoid>();
 
    private void Awake()
    {
@@ -21,5 +21,24 @@ public class GameMgr : MonoBehaviour
          Instance = null;
    }
 
-   //public void 
+   public void AddPlanetoid(Planetoid p)
+   {
+      planetoids.Add(p);
+   }
+
+   public Planetoid GetClosestPlanetoid(Vector3 pos)
+   {
+      Planetoid bestPlanetoid = null;
+      float bestDistanceSq = float.PositiveInfinity;
+      foreach (Planetoid p in planetoids)
+      {
+         float distSq = (p.transform.position - pos).sqrMagnitude;
+         if (distSq < bestDistanceSq)
+         {
+            bestDistanceSq = distSq;
+            bestPlanetoid = p;
+         }
+      }
+      return bestPlanetoid;
+   }
 }
