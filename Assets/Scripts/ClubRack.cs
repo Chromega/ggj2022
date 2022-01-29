@@ -30,4 +30,16 @@ public class ClubRack : MonoBehaviour
    {
       return transform.rotation * clubLocalRotation[club];
    }
+
+   private void Update()
+   {
+      Vector3 pos = transform.parent.InverseTransformPoint(Camera.main.transform.position);
+      pos.y = 0;
+
+      transform.localPosition = pos;
+
+      Vector3 facing = -transform.parent.InverseTransformDirection(Camera.main.transform.forward);
+      facing.y = 0;
+      transform.localRotation = Quaternion.LookRotation(facing.normalized, Vector3.up);
+   }
 }

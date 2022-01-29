@@ -60,13 +60,13 @@ public class Player : MonoBehaviour
          snapTurnDebounce -= Time.deltaTime;
       }
 
-  }
+   }
 
    void DoSnapTurn(float inputX)
    {
       if (snapTurnDebounce <= 0f)
       {
-         transform.Rotate(0, Mathf.Sign(inputX)*45, 0);
+         transform.Rotate(0, Mathf.Sign(inputX) * 45, 0);
 
          Vector3 offsetFromBall = transform.TransformVector(-ballOffset);
          transform.position = GameMgr.Instance.golfBall.transform.position + offsetFromBall;
@@ -94,8 +94,8 @@ public class Player : MonoBehaviour
    {
       GolfBall ball = GameMgr.Instance.golfBall;
       Rigidbody rb = ball.GetComponent<Rigidbody>();
-      Vector3 relativePosition = ballOffset + .1f * Vector3.up;
-      Vector3 worldPosition = transform.TransformPoint(relativePosition);
+
+      Vector3 worldPosition = GetBallStartPosition();
 
       rb.position = worldPosition;
       rb.velocity = Vector3.zero;
@@ -107,5 +107,13 @@ public class Player : MonoBehaviour
    {
       Scene scene = SceneManager.GetActiveScene();
       SceneManager.LoadScene(scene.name);
+   }
+
+   public Vector3 GetBallStartPosition()
+   {
+      //Vector3 relativePosition = ballOffset + .1f * Vector3.up; // needed when we had gravity
+      Vector3 relativePosition = ballOffset;
+      Vector3 worldPosition = transform.TransformPoint(relativePosition);
+      return worldPosition;
    }
 }
