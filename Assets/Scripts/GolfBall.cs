@@ -5,6 +5,7 @@ using UnityEngine;
 public class GolfBall : MonoBehaviour
 {
    public Planetoid lastPlanetoid;
+   public TrailRenderer trail;
 
    // Start is called before the first frame update
    void Start()

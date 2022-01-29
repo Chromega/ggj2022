@@ -8,16 +8,17 @@ public class Miniature : Pickupable
 
    public GameObject playerIcon;
    GameObject planetoidCopy;
-   GameObject golfBallCopy;
+   GolfBall golfBallCopy;
    public Material planetMaterial;
 
    protected override void Start()
    {
       base.Start();
-      golfBallCopy = Instantiate(GameMgr.Instance.golfBall.gameObject);
+      golfBallCopy = Instantiate(GameMgr.Instance.golfBall.gameObject).GetComponent<GolfBall>();
       golfBallCopy.transform.parent = transform;
       golfBallCopy.GetComponent<Collider>().enabled = false;
       golfBallCopy.GetComponent<Rigidbody>().isKinematic = true;
+      golfBallCopy.trail.enabled = false;
    }
 
    protected override void Update()
