@@ -24,20 +24,7 @@ public class PlayerVRToggle : MonoBehaviour
       {
          isVREnabled = true;
       }
-      Debug.Log(isVREnabled);
-      if (isVREnabled)
-      {
-         // no VR headset
-         GameObject.Find("PlayerNonVR").SetActive(false);
-      } else
-      {
-         // no VR headset
-         GameObject.Find("PlayerVR").SetActive(false);
-      }
-   }
-
-   // Update is called once per frame
-   void Update()
-   {
+      playerVR.SetActive(isVREnabled);
+      playerNonVR.SetActive(!isVREnabled);
    }
 }

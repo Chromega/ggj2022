@@ -9,15 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3447187694674104158}
-  - component: {fileID: 9185611602590400521}
-  - component: {fileID: 7371704357935601528}
+  - component: {fileID: 5051203702278071933}
   m_Layer: 0
   m_Name: PlayerNonVR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3447187694674104158
 Transform:
   m_ObjectHideFlags: 0
@@ -26,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 17455284147010131}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -34,7 +33,7 @@ Transform:
   m_Father: {fileID: 6610483346513056520}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9185611602590400521
+--- !u!114 &5051203702278071933
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,29 +42,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 17455284147010131}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb6e33e65923134439eed87556083c68, type: 3}
+  m_Script: {fileID: 11500000, guid: 476e3a9e9d3327b498c13ad098a5e4f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axes: 0
-  sensitivityX: 5
-  sensitivityY: 5
-  minimumX: -360
-  maximumX: 360
-  minimumY: -60
-  maximumY: 60
---- !u!114 &7371704357935601528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 17455284147010131}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cd0d40a882119d47a5ecb2ae6628460, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camera: {fileID: 7592393218379403114}
 --- !u!1 &961858799963735222
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,9 +106,10 @@ GameObject:
   - component: {fileID: 1496227752318944673}
   - component: {fileID: 7592393218379403114}
   - component: {fileID: 7027114420995043977}
+  - component: {fileID: 8464398083777697323}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,7 +122,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4760693029231638951}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -200,6 +180,25 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4760693029231638951}
   m_Enabled: 1
+--- !u!114 &8464398083777697323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4760693029231638951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb6e33e65923134439eed87556083c68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axes: 0
+  sensitivityX: 5
+  sensitivityY: 5
+  minimumX: -360
+  maximumX: 360
+  minimumY: -60
+  maximumY: 60
 --- !u!1 &6355188015042162325
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,8 +538,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6610483346513056520}
-  - component: {fileID: 6610483346513056523}
   - component: {fileID: 9187523878601575376}
+  - component: {fileID: 7063368306856788024}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -567,23 +566,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6610483346513056523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6610483346513056522}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2483b9bd782f9449a5972b61b7d51a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_CameraFloorOffsetObject: {fileID: 6610483345568421333}
-  m_RequestedTrackingMode: 2
-  m_TrackingOriginMode: 1
-  m_TrackingSpace: 1
-  m_CameraYOffset: 1.36144
 --- !u!114 &9187523878601575376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -596,12 +578,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 990e8e4a77d162b4bab38f592136a4bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftController: {fileID: 0}
-  rightController: {fileID: 0}
-  snapTurnDeadZone: 0.125
-  snapTurnDebounceTimeSeconds: 1
   playerVR: {fileID: 7956937289404271656}
   playerNonVR: {fileID: 17455284147010131}
+--- !u!114 &7063368306856788024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6610483346513056522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddeb614c82a5b1c40a6c2126d853b461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftController: {fileID: 6610483346527128594}
+  rightController: {fileID: 6610483345332358892}
+  snapTurnDeadZone: 0.125
+  snapTurnDebounceTimeSeconds: 1
 --- !u!1 &6610483346527128601
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,7 +717,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4096158544283266173}
-  - component: {fileID: 1799181358284806349}
+  - component: {fileID: 2174390616702758414}
   m_Layer: 0
   m_Name: PlayerVR
   m_TagString: Untagged
@@ -749,7 +743,7 @@ Transform:
   m_Father: {fileID: 6610483346513056520}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1799181358284806349
+--- !u!114 &2174390616702758414
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -758,15 +752,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7956937289404271656}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddeb614c82a5b1c40a6c2126d853b461, type: 3}
+  m_Script: {fileID: 11500000, guid: a2483b9bd782f9449a5972b61b7d51a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftController: {fileID: 6610483346527128594}
-  rightController: {fileID: 6610483345332358892}
-  snapTurnDeadZone: 0.125
-  snapTurnDebounceTimeSeconds: 1
-  playerVR: {fileID: 0}
-  playerNonVR: {fileID: 0}
+  m_CameraFloorOffsetObject: {fileID: 6610483345568421333}
+  m_RequestedTrackingMode: 2
+  m_TrackingOriginMode: 1
+  m_TrackingSpace: 1
+  m_CameraYOffset: 1.36144
 --- !u!1001 &3820275654885567928
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -5,10 +5,6 @@ using System.Collections.Generic;
 public class PlayerMove : MonoBehaviour
 {
 
-   void Start()
-   {
-   }
-
    void Update()
    {
       var x = Input.GetAxis("Horizontal") * 0.02f;

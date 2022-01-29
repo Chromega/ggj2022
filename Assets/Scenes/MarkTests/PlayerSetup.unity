@@ -385,7 +385,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 2.4393463, z: 6.92e-43, w: 560.0635}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: -0.0000000014004877}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -549,18 +549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastPlanetoid: {fileID: 0}
---- !u!114 &1238223530 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2449981032538226312, guid: dda4a1002f13edf48b55576c792130c4,
-    type: 3}
-  m_PrefabInstance: {fileID: 6610483344799675530}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddeb614c82a5b1c40a6c2126d853b461, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  trail: {fileID: 0}
 --- !u!1 &1635376089
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,7 +677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   golfBall: {fileID: 8655648276478566915}
-  player: {fileID: 1238223530}
+  player: {fileID: 6610483344799675531}
 --- !u!4 &2065987595
 Transform:
   m_ObjectHideFlags: 0
@@ -773,6 +762,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dda4a1002f13edf48b55576c792130c4, type: 3}
+--- !u!114 &6610483344799675531 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7063368306856788024, guid: dda4a1002f13edf48b55576c792130c4,
+    type: 3}
+  m_PrefabInstance: {fileID: 6610483344799675530}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddeb614c82a5b1c40a6c2126d853b461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8655648276478566914
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -511,7 +511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   golfBall: {fileID: 1897756517}
-  player: {fileID: 1644436668}
+  player: {fileID: 893908398}
 --- !u!4 &787205312
 Transform:
   m_ObjectHideFlags: 0
@@ -647,6 +647,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &893908398 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7063368306856788024, guid: dda4a1002f13edf48b55576c792130c4,
+    type: 3}
+  m_PrefabInstance: {fileID: 6610483344799675530}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddeb614c82a5b1c40a6c2126d853b461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1013370849 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 961858799963735222, guid: dda4a1002f13edf48b55576c792130c4,
@@ -995,18 +1007,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravitySource: {fileID: 1525941211}
---- !u!114 &1644436668 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2449981032538226312, guid: dda4a1002f13edf48b55576c792130c4,
-    type: 3}
-  m_PrefabInstance: {fileID: 6610483344799675530}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddeb614c82a5b1c40a6c2126d853b461, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1702275970
 GameObject:
   m_ObjectHideFlags: 0

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0003145601, g: 0.000459939, b: 0.0011836145, a: 1}
+  m_IndirectSpecularColor: {r: 0.00031447277, g: 0.00046001558, b: 0.0011834975, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -511,7 +511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   golfBall: {fileID: 1897756517}
-  player: {fileID: 976954067}
+  player: {fileID: 6610483344799675531}
 --- !u!4 &787205312
 Transform:
   m_ObjectHideFlags: 0
@@ -647,18 +647,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &976954067 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1799181358284806349, guid: dda4a1002f13edf48b55576c792130c4,
-    type: 3}
-  m_PrefabInstance: {fileID: 6610483344799675530}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddeb614c82a5b1c40a6c2126d853b461, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1013370849 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 961858799963735222, guid: dda4a1002f13edf48b55576c792130c4,
@@ -1273,6 +1261,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dda4a1002f13edf48b55576c792130c4, type: 3}
+--- !u!114 &6610483344799675531 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7063368306856788024, guid: dda4a1002f13edf48b55576c792130c4,
+    type: 3}
+  m_PrefabInstance: {fileID: 6610483344799675530}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddeb614c82a5b1c40a6c2126d853b461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8655648276478566914
 PrefabInstance:
   m_ObjectHideFlags: 0
