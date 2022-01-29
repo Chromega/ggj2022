@@ -558,11 +558,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet_Starting
       objectReference: {fileID: 0}
-    - target: {fileID: 4880524561163834082, guid: 3db639d33a7a6bf48b2b27bca19b405c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5535478166395653853, guid: 3db639d33a7a6bf48b2b27bca19b405c,
         type: 3}
       propertyPath: m_RootOrder
@@ -1070,6 +1065,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravitySource: {fileID: 1525941211}
+  isMiniature: 0
 --- !u!1001 &1659330881
 PrefabInstance:
   m_ObjectHideFlags: 0
