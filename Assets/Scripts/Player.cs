@@ -82,7 +82,7 @@ public class Player : MonoBehaviour
    {
       GolfBall ball = GameMgr.Instance.golfBall;
       Vector3 ballPosition = ball.transform.position;
-      Vector3 normal = ball.lastPlanetoid.gravitySource.ComputePlayerNormal(ballPosition);
+      Vector3 normal = ball.closestPlanetoid.gravitySource.ComputePlayerNormal(ballPosition);
 
       Quaternion facing = Quaternion.FromToRotation(Vector3.up, normal);
       Vector3 relativePosition = -ballOffset;

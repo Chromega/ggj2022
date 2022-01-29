@@ -5,6 +5,7 @@ using UnityEngine;
 public class GolfBall : MonoBehaviour
 {
    public Planetoid lastPlanetoid;
+   public Planetoid closestPlanetoid;
    public TrailRenderer trail;
    public Rigidbody rb;
 
@@ -76,6 +77,8 @@ public class GolfBall : MonoBehaviour
       emission.rateOverDistance = burnTimeRemaining > 0.0f ? 10 : 0;
 
       burnTimeRemaining -= Time.deltaTime;
+      
+      closestPlanetoid = GameMgr.Instance.GetClosestPlanetoid(transform.position);
 
       if (isActiveBall())
       {
