@@ -7,6 +7,9 @@ public class Player : MonoBehaviour
 {
    public VRControllerInput leftController;
    public VRControllerInput rightController;
+   public float snapTurnDeadZone = 0.125f;
+   public float snapTurnDebounceTimeSeconds = 1f;
+   float snapTurnDebounce = 0f;
 
    // Start is called before the first frame update
    void Start()
@@ -28,6 +31,32 @@ public class Player : MonoBehaviour
       if (rightController.GetStickButtonDown() || leftController.GetStickButtonDown())
       {
          DoReload();
+      }
+      if (Mathf.Abs(rightController.GetStickPosition().x) > snapTurnDeadZone)
+      {
+         DoSnapTurn(rightController.GetStickPosition().x);
+      }
+      if (Mathf.Abs(leftController.GetStickPosition().x) > snapTurnDeadZone)
+      {
+         DoSnapTurn(leftController.GetStickPosition().x);
+      }
+      if (snapTurnDebounce > 0f)
+      {
+         snapTurnDebounce -= Time.deltaTime;
+      }
+
+  }
+
+   void DoSnapTurn(float inputX)
+   {
+      Debug.Log(snapTurnDebounce);
+      if (snapTurnDebounce <= 0f)
+      {
+         transform.Rotate(0, Mathf.Sign(inputX)*45, 0);
+         snapTurnDebounce = snapTurnDebounceTimeSeconds;
+      } else
+      {
+         snapTurnDebounce -= Time.deltaTime;
       }
    }
 
