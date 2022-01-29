@@ -241,9 +241,7 @@ public class GolfClub : Pickupable
       yield return new WaitForSeconds(3.0f);
       rb.useGravity = false;
       magnetizeToRack = true;
-      SetCollisionLayer(7);
-      yield return new WaitForSeconds(2.0f);
-      SetCollisionLayer(0);
+      SetCollisionLayer(9);
    }
 
    protected override float GetSpringDistanceLimit()
