@@ -5614,6 +5614,7 @@ MonoBehaviour:
   trail: {fileID: 4381987998378681628}
   rb: {fileID: 8655648276622337216}
   entryBurnFx: {fileID: 4466754785221216185}
+  timeBeforeNewBallSpawns: 3
 --- !u!1001 &2361151091103135663
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5691,6 +5692,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6396740106336217852, guid: 090f5475710f34fe2ae8d8f86e768594,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 48de261aca541c247a5e6b6d8659234d, type: 2}
     - target: {fileID: 919132149155446097, guid: 090f5475710f34fe2ae8d8f86e768594,
         type: 3}
       propertyPath: m_Name
