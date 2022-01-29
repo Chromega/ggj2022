@@ -412,8 +412,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ee59fb9645506e46b4de6d5f7270591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canDoEntryBurn: 1
   surfaceRadius: 10
   surfaceGForce: 0.5
+  burnRadius: 30
 --- !u!135 &533688405
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -641,8 +643,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ee59fb9645506e46b4de6d5f7270591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canDoEntryBurn: 1
   surfaceRadius: 10
   surfaceGForce: 0.5
+  burnRadius: 30
 --- !u!135 &845513584
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -716,8 +720,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ee59fb9645506e46b4de6d5f7270591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canDoEntryBurn: 1
   surfaceRadius: 10
   surfaceGForce: 0.5
+  burnRadius: 30
 --- !u!135 &874942066
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -823,6 +829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 633b2792065680942bfd7ce7fc8a25a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canDoEntryBurn: 1
   surfaceRadius: 10
   surfaceGForce: 0.5
 --- !u!1001 &1104773392
@@ -952,8 +959,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ee59fb9645506e46b4de6d5f7270591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canDoEntryBurn: 1
   surfaceRadius: 10
   surfaceGForce: 1
+  burnRadius: 30
 --- !u!1001 &1546370684
 PrefabInstance:
   m_ObjectHideFlags: 0

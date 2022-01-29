@@ -8,6 +8,7 @@ public class GameMgr : MonoBehaviour
 
    public GolfBall golfBall;
    public Player player;
+   List<Planetoid> planetoids;
 
    private void Awake()
    {
@@ -19,4 +20,6 @@ public class GameMgr : MonoBehaviour
       if (Instance == this)
          Instance = null;
    }
+
+   //public void 
 }

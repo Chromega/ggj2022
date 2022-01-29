@@ -157,7 +157,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6198653470059871422
 Transform:
   m_ObjectHideFlags: 0
@@ -1007,7 +1007,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
+      scalar: 0
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -5613,6 +5613,7 @@ MonoBehaviour:
   lastPlanetoid: {fileID: 0}
   trail: {fileID: 4381987998378681628}
   rb: {fileID: 8655648276622337216}
+  entryBurnFx: {fileID: 4466754785221216185}
 --- !u!1001 &2361151091103135663
 PrefabInstance:
   m_ObjectHideFlags: 0
