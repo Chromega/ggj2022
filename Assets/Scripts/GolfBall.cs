@@ -51,6 +51,15 @@ public class GolfBall : MonoBehaviour
       releasedCoroutine = StartCoroutine(SpawnGhostBall());
    }
 
+   void SetThisBallAsActive()
+   {
+      // Set this ball as the active ball, and the other ball as the ghost ball
+      GolfBall otherBall = GameMgr.Instance.GetOtherBall(this);
+      GameMgr.Instance.golfBall = this;
+      GameMgr.Instance.SetGhostBall(otherBall);
+      otherBall.gameObject.SetActive(false);
+   }
+
    // Update is called once per frame
    void Update()
    {
@@ -69,10 +78,7 @@ public class GolfBall : MonoBehaviour
          GetComponent<Rigidbody>().useGravity = true;
 
          // Set this ball as the active ball, and the other ball as the ghost ball
-         GolfBall otherBall = GameMgr.Instance.GetOtherBall(this);
-         GameMgr.Instance.golfBall = this;
-         GameMgr.Instance.SetGhostBall(otherBall);
-         otherBall.gameObject.SetActive(false);
+         SetThisBallAsActive();
       }
 
       var emission = entryBurnFx.emission;
@@ -112,6 +118,7 @@ public class GolfBall : MonoBehaviour
       else if (collision.collider.gameObject.layer == 7) //golf club
       {
          GetComponent<Rigidbody>().useGravity = true;
+         SetThisBallAsActive();
       }
    }
 
