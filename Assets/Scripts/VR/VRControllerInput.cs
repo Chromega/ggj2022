@@ -21,6 +21,9 @@ public class VRControllerInput : MonoBehaviour
    bool secondaryButtonDown;
    bool lastSecondaryButtonDown;
 
+   bool stickDown;
+   bool lastStickDown;
+
    private void Awake()
    {
       qualifyingDevices = new List<InputDevice>();
@@ -107,23 +110,12 @@ public class VRControllerInput : MonoBehaviour
       return false;
    }
 
-   bool GetPrimaryButton_Impl()
+   bool GetButtonPress(InputFeatureUsage<bool> usage)
    {
       foreach (var device in qualifyingDevices)
       {
          bool button;
-         device.TryGetFeatureValue(CommonUsages.primaryButton, out button);
-         return button;
-      }
-      return false;
-   }
-
-   bool GetSecondaryButton_Impl()
-   {
-      foreach (var device in qualifyingDevices)
-      {
-         bool button;
-         device.TryGetFeatureValue(CommonUsages.secondaryButton, out button);
+         device.TryGetFeatureValue(usage, out button);
          return button;
       }
       return false;
@@ -153,10 +145,13 @@ public class VRControllerInput : MonoBehaviour
    private void Update()
    {
       lastPrimaryButtonDown = primaryButtonDown;
-      primaryButtonDown = GetPrimaryButton_Impl();
+      primaryButtonDown = GetButtonPress(CommonUsages.primaryButton);
 
       lastSecondaryButtonDown = secondaryButtonDown;
-      secondaryButtonDown = GetSecondaryButton_Impl();
+      secondaryButtonDown = GetButtonPress(CommonUsages.secondaryButton);
+
+      lastStickDown = stickDown;
+      stickDown = GetButtonPress(CommonUsages.primary2DAxisClick);
    }
 
    public bool GetPrimaryButton()
@@ -187,5 +182,20 @@ public class VRControllerInput : MonoBehaviour
    public bool GetSecondaryButtonUp()
    {
       return !secondaryButtonDown && lastSecondaryButtonDown;
+   }
+
+   public bool GetStickButton()
+   {
+      return stickDown;
+   }
+
+   public bool GetStickButtonDown()
+   {
+      return stickDown && !lastStickDown;
+   }
+
+   public bool GetStickButtonUp()
+   {
+      return !stickDown && lastStickDown;
    }
 }

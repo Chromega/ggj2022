@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -23,6 +24,10 @@ public class Player : MonoBehaviour
       if (rightController.GetSecondaryButtonDown() || leftController.GetSecondaryButtonDown())
       {
          DoRecallBall();
+      }
+      if (rightController.GetStickButtonDown() || leftController.GetStickButtonDown())
+      {
+         DoReload();
       }
    }
 
@@ -48,5 +53,10 @@ public class Player : MonoBehaviour
       rb.position = worldPosition;
       rb.velocity = Vector3.zero;
       rb.angularVelocity = Vector3.zero;
+   }
+   void DoReload()
+   {
+      Scene scene = SceneManager.GetActiveScene();
+      SceneManager.LoadScene(scene.name);
    }
 }
