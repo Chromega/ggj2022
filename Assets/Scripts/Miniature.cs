@@ -35,7 +35,8 @@ public class Miniature : Pickupable
 
 
       Vector3 playerWorldPos = GameMgr.Instance.player.transform.position;
-      Quaternion playerWorldRot = GameMgr.Instance.player.transform.rotation;
+      //Quaternion playerWorldRot = GameMgr.Instance.player.transform.transform.rotation;
+      Quaternion playerWorldRot = Camera.main.transform.transform.rotation;
       Vector3 playerPlanetoidPos = currentPlanetoid.transform.InverseTransformPoint(playerWorldPos);
       Quaternion playerPlanetoidRot = Quaternion.Inverse(currentPlanetoid.transform.rotation) * playerWorldRot;
       playerIcon.transform.localPosition = playerPlanetoidPos;
