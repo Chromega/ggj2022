@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00031447277, g: 0.00046001558, b: 0.0011834975, a: 1}
+  m_IndirectSpecularColor: {r: 0.0003145601, g: 0.000459939, b: 0.0011836145, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -647,6 +647,12 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!96 &991654138 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 4381987998378681628, guid: 86c0c04c6aee4b1458c82c73812aca98,
+    type: 3}
+  m_PrefabInstance: {fileID: 8655648276478566914}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1013370849 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 961858799963735222, guid: dda4a1002f13edf48b55576c792130c4,
@@ -1249,6 +1255,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7063368306856788024, guid: dda4a1002f13edf48b55576c792130c4,
+        type: 3}
+      propertyPath: tr
+      value: 
+      objectReference: {fileID: 991654138}
     - target: {fileID: 9185611602590400521, guid: dda4a1002f13edf48b55576c792130c4,
         type: 3}
       propertyPath: sensitivityX
