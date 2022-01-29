@@ -7,6 +7,7 @@ public class GameMgr : MonoBehaviour
    public static GameMgr Instance { get; private set; }
 
    public GolfBall golfBall;
+   public Player player;
 
    private void Awake()
    {
