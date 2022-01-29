@@ -52,7 +52,6 @@ public class GolfBall : MonoBehaviour
    // Update is called once per frame
    void Update()
    {
-      Debug.Log(isClosestBallToPlayer());
       if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse2))
       {
          chargeTime += Time.deltaTime;
