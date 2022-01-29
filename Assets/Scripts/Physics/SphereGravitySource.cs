@@ -6,7 +6,12 @@ public class SphereGravitySource : GravitySource
 {
    public float surfaceRadius;
    public float surfaceGForce;
+   public float burnRadius;
 
+   public override bool IsInBurnRange(Vector3 position)
+   {
+      return (position - transform.position).magnitude < burnRadius;
+   }
 
    protected override Vector3 ComputeForce(Rigidbody rb)
    {

@@ -95,7 +95,11 @@ MonoBehaviour:
   preserveGrabPosition: 1
   preserveGrabRotation: 1
   playerIcon: {fileID: 8550298104652479947}
-  planetMaterial: {fileID: 2100000, guid: f9b917ce3ddff924b86ecaa653671719, type: 2}
+  materialSubstitutions:
+  - original: {fileID: 2100000, guid: 1f1dce0b191472c4d83280daee6b9bb8, type: 2}
+    substitute: {fileID: 2100000, guid: f9b917ce3ddff924b86ecaa653671719, type: 2}
+  - original: {fileID: 2100000, guid: bd7438e39b6249c418daeed972b18752, type: 2}
+    substitute: {fileID: 2100000, guid: fd5c0ffc1174aa440925fee7e4cbc054, type: 2}
   planetProgressText: {fileID: 5499010473132702473}
 --- !u!1 &4760693029231638951
 GameObject:
