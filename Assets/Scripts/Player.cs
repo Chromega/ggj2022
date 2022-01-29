@@ -19,10 +19,12 @@ public class Player : MonoBehaviour
    // Start is called before the first frame update
    void Start()
    {
+      Debug.Log("start");
 
       // Enable VR or non-VR modes
       var inputDevices = new List<UnityEngine.XR.InputDevice>();
       UnityEngine.XR.InputDevices.GetDevices(inputDevices);
+
       if (inputDevices.Count == 0)
       {
          isVREnabled = false;
@@ -30,16 +32,16 @@ public class Player : MonoBehaviour
       } else
       {
          isVREnabled = true;
-         
       }
+
       if (isVREnabled)
       {
          // no VR headset
-         GameObject.Find("PlayerVR").SetActive(false);
+         GameObject.Find("PlayerNonVR").SetActive(false);
       } else
       {
          // no VR headset
-         GameObject.Find("PlayerNonVR").SetActive(false);
+         GameObject.Find("PlayerVR").SetActive(false);
       }
    }
 

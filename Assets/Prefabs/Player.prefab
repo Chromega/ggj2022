@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3447187694674104158}
   - component: {fileID: 9185611602590400521}
+  - component: {fileID: 5859129314026834479}
   m_Layer: 0
   m_Name: PlayerNonVR
   m_TagString: Untagged
@@ -52,6 +53,18 @@ MonoBehaviour:
   maximumX: 360
   minimumY: -60
   maximumY: 60
+--- !u!114 &5859129314026834479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17455284147010131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 476e3a9e9d3327b498c13ad098a5e4f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &961858799963735222
 GameObject:
   m_ObjectHideFlags: 0
