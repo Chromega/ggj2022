@@ -271,6 +271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lastPlanetoid: {fileID: 0}
   trail: {fileID: 4381987998378681628}
+  rigidbody: {fileID: 8655648276622337216}
 --- !u!1001 &2361151091103135663
 PrefabInstance:
   m_ObjectHideFlags: 0

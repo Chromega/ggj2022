@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
          DoTeleport();
       }
       if (rightController.GetSecondaryButtonDown() || leftController.GetSecondaryButtonDown() ||
-         Input.GetMouseButtonDown(2))
+         Input.GetMouseButtonDown(1))
       {
          DoRecallBall();
       }

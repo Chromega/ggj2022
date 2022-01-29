@@ -6,17 +6,24 @@ public class GolfBall : MonoBehaviour
 {
    public Planetoid lastPlanetoid;
    public TrailRenderer trail;
+   public Rigidbody rigidbody;
 
-   // Start is called before the first frame update
-   void Start()
-   {
-
-   }
-
+   float chargeTime;
+   
    // Update is called once per frame
    void Update()
    {
+      if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse2))
+      {
+         chargeTime += Time.deltaTime;
+      }
+      if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.Mouse2))
+      {
+         Vector3 direction = Camera.main.transform.forward;
 
+         rigidbody.AddForce(direction*chargeTime*3f, ForceMode.Impulse);
+         chargeTime = 0;
+      }
    }
 
    private void OnCollisionEnter(Collision collision)
