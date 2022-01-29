@@ -33,7 +33,7 @@ public class Miniature : Pickupable
 
    protected override void Update()
    {
-      UpdatePlanetoid(GameMgr.Instance.golfBall.lastPlanetoid);
+      UpdatePlanetoid(GameMgr.Instance.golfBall.closestPlanetoid);
 
       if (!currentPlanetoid)
          return;
@@ -61,6 +61,8 @@ public class Miniature : Pickupable
 
    void UpdatePlanetoid(Planetoid planetoid, bool force=false)
    {
+      if (!planetoid)
+         return;
 
       if (planetoid == currentPlanetoid && !force)
          return;
@@ -76,6 +78,7 @@ public class Miniature : Pickupable
       }
 
       planetoidCopy = Instantiate(planetoid.gameObject).GetComponent<Planetoid>();
+      planetoidCopy.isMiniature = true;
       planetoidCopy.transform.parent = transform;
       planetoidCopy.transform.localPosition = Vector3.zero;
       planetoidCopy.transform.localRotation = Quaternion.identity;

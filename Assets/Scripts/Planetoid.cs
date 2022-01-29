@@ -7,11 +7,20 @@ public class Planetoid : MonoBehaviour
    public GravitySource gravitySource;
    List<GolfGoal> goals = new List<GolfGoal>();
 
+   [HideInInspector]
+   public bool isMiniature;
+
    public System.Action OnGoalCollected;
 
    private void Awake()
    {
       gameObject.layer = 8; //Planetoid
+   }
+
+   private void Start()
+   {
+      if (!isMiniature)
+         GameMgr.Instance.AddPlanetoid(this);
    }
 
    public void AddGoal(GolfGoal goal)
