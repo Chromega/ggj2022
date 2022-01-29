@@ -17,6 +17,7 @@ public class GolfBall : MonoBehaviour
 
    // Use to calculate spawning a cloned ghost ball for convenience
    public float timeBeforeNewBallSpawns;
+   public float distanceBeforeGhostBallSpawns = 3f;
    Coroutine releasedCoroutine;
    float prevDistToPlayer = 0f;
 
@@ -71,6 +72,7 @@ public class GolfBall : MonoBehaviour
          GolfBall otherBall = GameMgr.Instance.GetOtherBall(this);
          GameMgr.Instance.golfBall = this;
          GameMgr.Instance.SetGhostBall(otherBall);
+         otherBall.gameObject.SetActive(false);
       }
 
       var emission = entryBurnFx.emission;
@@ -83,7 +85,7 @@ public class GolfBall : MonoBehaviour
       if (isActiveBall())
       {
          float distToPlayer = Vector3.Distance(GameMgr.Instance.player.transform.position, transform.position);
-         if (prevDistToPlayer < 3f && distToPlayer > 3f)
+         if (prevDistToPlayer < distanceBeforeGhostBallSpawns && distToPlayer > distanceBeforeGhostBallSpawns)
          {
             // spawn the ghost ball back at the original player
             DelaySpawnGhost();
