@@ -9,7 +9,7 @@ public class GolfGoal : MonoBehaviour
 
    Planetoid planetoid;
 
-   bool collected = false;
+   public bool collected = false;
 
    private void Awake()
    {
