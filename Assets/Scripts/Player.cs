@@ -65,7 +65,10 @@ public class Player : MonoBehaviour
       {
          snapTurnDebounce -= Time.deltaTime;
       }
-
+      if (Input.GetKeyDown(KeyCode.M))
+      {
+         GameMgr.Instance.ToggleBgMusic();
+      }
    }
 
    void DoSnapTurn(float inputX)
