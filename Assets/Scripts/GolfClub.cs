@@ -26,6 +26,8 @@ public class GolfClub : Pickupable
    public AudioClipPool whooshSfx;
    public AudioSource audioSource;
 
+   public AudioClipPool sfxPickup;
+
    float timeSinceLastWhoosh = 999f;
 
    protected override void Start()
@@ -182,6 +184,9 @@ public class GolfClub : Pickupable
          releasedCoroutine = null;
       }
       magnetizeToRack = false;
+
+      // play a pick up sound
+      audioSource.PlayOneShot(sfxPickup.GetClip());
    }
 
    public override void RemoveGrabber(Grabber grabber)

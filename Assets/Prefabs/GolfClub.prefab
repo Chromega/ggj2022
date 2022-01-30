@@ -91,6 +91,9 @@ MonoBehaviour:
     - {fileID: 8300000, guid: a5b80bc99339a4419af529e0ef1de1c4, type: 3}
     - {fileID: 8300000, guid: de8cfc0c6f3b74a248aefb8beda70d8d, type: 3}
   audioSource: {fileID: 4716310545839066027}
+  sfxPickup:
+    clips:
+    - {fileID: 8300000, guid: 73d41b9f1b05cf04c9c92188d07a9bcd, type: 3}
 --- !u!54 &2096784675631976783
 Rigidbody:
   m_ObjectHideFlags: 0
