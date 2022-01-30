@@ -10,10 +10,12 @@ public class GolfBall : MonoBehaviour
    public Rigidbody rb;
 
    public ParticleSystem entryBurnFx;
+   public ParticleSystem onFireFx;
 
    float chargeTime;
 
    float burnTimeRemaining;
+   static double fireEndTime;
 
    public Material ghostMaterial;
    public Material originalMaterial;
@@ -85,12 +87,29 @@ public class GolfBall : MonoBehaviour
          CheckGhostCollision();
       }
 
-      var emission = entryBurnFx.emission;
-      emission.rateOverDistance = burnTimeRemaining > 0.0f ? 10 : 0;
+      {
+         var emission = entryBurnFx.emission;
+         emission.rateOverDistance = burnTimeRemaining > 0.0f ? 10 : 0;
+      }
+
+      {
+         var emission = onFireFx.emission;
+         emission.rateOverTime = IsOnFire() ? 40 : 0;
+      }
 
       burnTimeRemaining -= Time.deltaTime;
       
       closestPlanetoid = GameMgr.Instance.GetClosestPlanetoid(transform.position);
+   }
+
+   public static bool IsOnFire()
+   {
+      return Time.realtimeSinceStartupAsDouble < fireEndTime;
+   }
+
+   public static void Extinguish()
+   {
+      fireEndTime = 0;
    }
 
    private void FixedUpdate()
@@ -104,7 +123,7 @@ public class GolfBall : MonoBehaviour
 
    private void OnCollisionEnter(Collision collision)
    {
-      if (collision.collider.gameObject.layer == 8) //planetoid
+      if (collision.collider.gameObject.layer == 8 || collision.collider.gameObject.layer == 10) //planetoid
       {
          lastPlanetoid = collision.collider.gameObject.GetComponentInParent<Planetoid>();
       }
@@ -125,6 +144,10 @@ public class GolfBall : MonoBehaviour
       trail.Clear();
    }
 
+   private void OnTriggerEnter(Collider other)
+   {
+   }
+
    private void OnTriggerStay(Collider other)
    {
       GravitySource gs = other.GetComponent<GravitySource>();
@@ -143,6 +166,11 @@ public class GolfBall : MonoBehaviour
                }
             }
          }
+      }
+
+      if (other.tag == "Fire")
+      {
+         fireEndTime = Time.realtimeSinceStartupAsDouble + 60;
       }
    }
 }
