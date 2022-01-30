@@ -17,6 +17,10 @@ public class GameMgr : MonoBehaviour
    private void Awake()
    {
       Instance = this;
+
+      // Enable fixed foveated rendering
+      // per: https://forum.unity.com/threads/how-to-enable-fixed-foveat-rendering.1172960/
+      Unity.XR.Oculus.Utils.SetFoveationLevel(3);
    }
 
    private void OnDestroy()
