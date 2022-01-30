@@ -131,7 +131,7 @@ public class GolfBall : MonoBehaviour
 
    private void OnCollisionEnter(Collision collision)
    {
-      if (collision.collider.gameObject.layer == 8) //planetoid
+      if (collision.collider.gameObject.layer == 8 || collision.collider.gameObject.layer == 10) //planetoid
       {
          lastPlanetoid = collision.collider.gameObject.GetComponentInParent<Planetoid>();
       }
