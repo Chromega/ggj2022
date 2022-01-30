@@ -40,7 +40,6 @@ public class CubeGravitySource : PolygonalSphereGravitySource
       float distance = displacement.magnitude;
       
       Vector3 outwardGravityDirection = ComputePlayerNormal(rb.position);
-      Debug.Log(outwardGravityDirection);
 
       outwardGravityDirection.Normalize();
 
