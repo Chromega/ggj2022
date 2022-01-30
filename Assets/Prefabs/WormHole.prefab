@@ -104,7 +104,7 @@ MonoBehaviour:
   canWarp: 1
   scaleChange: {x: 0, y: 0, z: 0}
   originalScale: {x: 0, y: 0, z: 0}
-  sfxWarp: {fileID: 8300000, guid: 0d094bf8e71132e48bffb1351c95b11c, type: 3}
+  sfxWarp: {fileID: 8300000, guid: cc9450fa3c73b05468a6a50d0b9b0483, type: 3}
 --- !u!135 &1102565843667636372
 SphereCollider:
   m_ObjectHideFlags: 0
