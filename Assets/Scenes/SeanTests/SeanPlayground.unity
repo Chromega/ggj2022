@@ -284,6 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravitySource: {fileID: 874942065}
+  isMiniature: 0
 --- !u!64 &446048902
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -328,8 +329,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ee59fb9645506e46b4de6d5f7270591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canDoEntryBurn: 1
   surfaceRadius: 10
   surfaceGForce: 0.5
+  burnRadius: 0
 --- !u!135 &533688405
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -467,6 +470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravitySource: {fileID: 845513583}
+  isMiniature: 0
 --- !u!64 &754275847
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -557,8 +561,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ee59fb9645506e46b4de6d5f7270591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canDoEntryBurn: 1
   surfaceRadius: 10
   surfaceGForce: 0.5
+  burnRadius: 0
 --- !u!135 &845513584
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -632,8 +638,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ee59fb9645506e46b4de6d5f7270591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canDoEntryBurn: 1
   surfaceRadius: 10
   surfaceGForce: 0.5
+  burnRadius: 0
 --- !u!135 &874942066
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -733,8 +741,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 633b2792065680942bfd7ce7fc8a25a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canDoEntryBurn: 1
   surfaceRadius: 10
   surfaceGForce: 0.5
+  burnRadius: 0
 --- !u!1001 &1104773392
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -862,8 +872,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ee59fb9645506e46b4de6d5f7270591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canDoEntryBurn: 1
   surfaceRadius: 10
   surfaceGForce: 1
+  burnRadius: 0
 --- !u!1001 &1546370684
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -962,6 +974,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravitySource: {fileID: 533688404}
+  isMiniature: 0
 --- !u!1 &1597921558 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1027616666574238, guid: 88ce38d84b7098a4a923afbfff7bfcb5,
@@ -1001,6 +1014,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravitySource: {fileID: 1525941211}
+  isMiniature: 0
 --- !u!1 &1702275970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1296,6 +1310,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GolfBall
       objectReference: {fileID: 0}
+    - target: {fileID: 8655648276622337219, guid: 86c0c04c6aee4b1458c82c73812aca98,
+        type: 3}
+      propertyPath: ghostMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 4595d6ae0ea9ace43800ea798618e806, type: 2}
     - target: {fileID: 8655648276622337219, guid: 86c0c04c6aee4b1458c82c73812aca98,
         type: 3}
       propertyPath: lastPlanetoid

@@ -5611,10 +5611,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastPlanetoid: {fileID: 0}
+  closestPlanetoid: {fileID: 0}
   trail: {fileID: 4381987998378681628}
   rb: {fileID: 8655648276622337216}
   entryBurnFx: {fileID: 4466754785221216185}
   timeBeforeNewBallSpawns: 3
+  distanceBeforeGhostBallSpawns: 3
+  ghostMaterial: {fileID: 0}
 --- !u!1001 &2361151091103135663
 PrefabInstance:
   m_ObjectHideFlags: 0
