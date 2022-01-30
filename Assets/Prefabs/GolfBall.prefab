@@ -10574,6 +10574,8 @@ MonoBehaviour:
   sfxBallHitSoft:
     clips:
     - {fileID: 8300000, guid: 202a236250bcb46818254aaac25d80f4, type: 3}
+    - {fileID: 8300000, guid: 563e06709ee3141478980605bfa53761, type: 3}
+    - {fileID: 8300000, guid: cf2060ba803be4551a8decb2997dc35a, type: 3}
   sfxBallGround:
     clips:
     - {fileID: 8300000, guid: 70840f38492784e6fad5dab85b66150b, type: 3}
