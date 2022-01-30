@@ -12,6 +12,7 @@ public class GameMgr : MonoBehaviour
 
    // The ghost golf ball is the 'reserve' ball. We will spawn it shortly after you hit your original ball.
    GolfBall ghostBall;
+   public float distanceBeforeGhostBallSpawns = 2f;
 
    private void Awake()
    {
@@ -44,19 +45,53 @@ public class GameMgr : MonoBehaviour
       }
       return bestPlanetoid;
    }
+
+
+   public void Update() {
+
+      // if the main ball is far away, then show the ghost ball
+      float dist = Vector3.Distance(player.transform.position, golfBall.transform.position);
+      if (dist > distanceBeforeGhostBallSpawns)
+      {
+         ghostBall.gameObject.SetActive(true);
+      }
+   }
+
+   public void ReturnGhostBall()
+   {
+      ghostBall.gameObject.SetActive(false);
+      ghostBall.transform.position = player.GetBallStartPosition();
+      Rigidbody rb = ghostBall.GetComponent<Rigidbody>();
+      rb.velocity = Vector3.zero;
+      rb.angularVelocity = Vector3.zero;
+      rb.useGravity = false;
+      ghostBall.trail.Clear();
+   }
+
+   public void SwapGhostBall()
+   {
+      // swap who's in which position
+      GolfBall gb = golfBall;
+      GolfBall ghost = ghostBall;
+      golfBall = ghost;
+      ghostBall = gb;
+
+      golfBall.ToggleMaterial(true);
+      golfBall.gameObject.SetActive(true);
+
+      ghostBall.ToggleMaterial(false);
+      ghostBall.gameObject.SetActive(false);
+   }
+
    public GolfBall GetGhostBall()
    {
       return ghostBall;
    }
 
-   public void SetGhostBall(GolfBall gb)
-   {
-      ghostBall = gb;
-   }
-
    void Start()
    {
       ghostBall = Instantiate(golfBall, transform.parent);
+      ghostBall.ToggleMaterial(false);
       ghostBall.gameObject.SetActive(false);
    }
 

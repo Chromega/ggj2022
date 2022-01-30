@@ -516,6 +516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   golfBall: {fileID: 1897756517}
   player: {fileID: 6610483344799675531}
+  distanceBeforeGhostBallSpawns: 2
 --- !u!4 &787205312
 Transform:
   m_ObjectHideFlags: 0
