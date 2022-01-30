@@ -20,6 +20,8 @@ public class GolfBall : MonoBehaviour
    public Material ghostMaterial;
    public Material originalMaterial;
 
+   public AudioClip sfxBallHit;
+
    bool isClosestBallToPlayer()
    {
       GolfBall closestBall = GameMgr.Instance.GetClosestBallToPlayer();
@@ -65,8 +67,9 @@ public class GolfBall : MonoBehaviour
       // Respawn a new ghost ball
       GameMgr.Instance.ReturnGhostBall();
 
-      // Do the dust effect
+      // Do the VFX and SFX effect
       GameMgr.Instance.player.DustEffect();
+      GetComponent<AudioSource>().PlayOneShot(sfxBallHit);
    }
 
    // Update is called once per frame
