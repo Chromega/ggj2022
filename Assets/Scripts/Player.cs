@@ -76,6 +76,7 @@ public class Player : MonoBehaviour
          transform.position = currentBallSource + offsetFromBall;
 
          snapTurnDebounce = snapTurnDebounceTimeSeconds;
+         miniature.PlayerTransformUpdated();
       } else
       {
          snapTurnDebounce -= Time.deltaTime;

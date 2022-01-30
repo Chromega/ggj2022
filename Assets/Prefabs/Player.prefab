@@ -766,6 +766,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftController: {fileID: 6610483346527128594}
   rightController: {fileID: 6610483345332358892}
+  miniature: {fileID: 940121681043051771}
   snapTurnDeadZone: 0.125
   snapTurnDebounceTimeSeconds: 1
 --- !u!1 &6610483346527128601
