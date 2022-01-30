@@ -23,6 +23,11 @@ public class GolfClub : Pickupable
    bool magnetizeToRack = true;
    Coroutine releasedCoroutine;
 
+   public AudioClipPool whooshSfx;
+   public AudioSource audioSource;
+
+   float timeSinceLastWhoosh = 999f;
+
    protected override void Start()
    {
       base.Start();
@@ -143,7 +148,15 @@ public class GolfClub : Pickupable
       {
          visual.transform.position = ComputeTargetPosition();
          visual.transform.rotation = ComputeTargetRotation();
+
+         float angularSpeed = ComputeTargetAngularVelocity().magnitude;
+         if (timeSinceLastWhoosh > .5f && angularSpeed > 20.0f)
+         {
+            audioSource.PlayOneShot(whooshSfx.GetClip());
+            timeSinceLastWhoosh = 0.0f;
+         }
       }
+      timeSinceLastWhoosh += Time.deltaTime;
 
       base.Update();
    }

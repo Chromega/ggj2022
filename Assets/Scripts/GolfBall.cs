@@ -12,6 +12,8 @@ public class GolfBall : MonoBehaviour
    public ParticleSystem entryBurnFx;
    public ParticleSystem onFireFx;
 
+   public GameObject attractor;
+
    float chargeTime;
 
    float burnTimeRemaining;
@@ -20,8 +22,12 @@ public class GolfBall : MonoBehaviour
    public Material ghostMaterial;
    public Material originalMaterial;
 
-   public AudioClip sfxBallHit;
-   public AudioClip sfxBallGround;
+   public AudioSource mainAudioSource;
+   public AudioSource burningAudioSource;
+
+   public AudioClipPool sfxBallHit;
+   public AudioClipPool sfxBallGround;
+   public AudioClipPool sfxBurning;
 
    bool isClosestBallToPlayer()
    {
@@ -70,7 +76,7 @@ public class GolfBall : MonoBehaviour
 
       // Do the VFX and SFX effect
       GameMgr.Instance.player.DustEffect();
-      GetComponent<AudioSource>().PlayOneShot(sfxBallHit);
+      mainAudioSource.PlayOneShot(sfxBallHit.GetClip());
    }
 
    // Update is called once per frame
@@ -105,13 +111,15 @@ public class GolfBall : MonoBehaviour
       
       closestPlanetoid = GameMgr.Instance.GetClosestPlanetoid(transform.position);
 
-      if (Input.GetKeyDown(KeyCode.F))
+      if (Input.GetKeyDown(KeyCode.F) && GameMgr.Instance.golfBall==this)
       {
          if (IsOnFire())
             Extinguish();
          else
             Ignite();
       }
+
+      attractor.SetActive(GameMgr.Instance.golfBall == this);
    }
 
    public static bool IsOnFire()
@@ -143,7 +151,7 @@ public class GolfBall : MonoBehaviour
       if (collision.collider.gameObject.layer == 8 || collision.collider.gameObject.layer == 10) //planetoid
       {
          lastPlanetoid = collision.collider.gameObject.GetComponentInParent<Planetoid>();
-         GetComponent<AudioSource>().PlayOneShot(sfxBallGround);
+         mainAudioSource.PlayOneShot(sfxBallGround.GetClip());
       }
       else if (collision.collider.gameObject.layer == 7) //golf club
       {
@@ -179,8 +187,11 @@ public class GolfBall : MonoBehaviour
             {
                if (gs.IsInBurnRange(transform.position))
                {
+                  if (burnTimeRemaining <= 0)
+                  {
+                     burningAudioSource.PlayOneShot(sfxBurning.GetClip());
+                  }
                   burnTimeRemaining = .2f;
-
                }
             }
          }
