@@ -120,4 +120,10 @@ public class Miniature : Pickupable
    {
       UpdatePlanetoid(currentPlanetoid, true);
    }
+
+   public void PlayerTransformUpdated()
+   {
+      transform.rotation = GameMgr.Instance.player.transform.rotation;
+   }
+
 }

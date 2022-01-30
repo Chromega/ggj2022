@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
    public VRControllerInput leftController;
    public VRControllerInput rightController;
 
+   public Miniature miniature;
+
    public float snapTurnDeadZone = 0.125f;
    public float snapTurnDebounceTimeSeconds = 1f;
    float snapTurnDebounce = 0f;
@@ -66,10 +68,12 @@ public class Player : MonoBehaviour
    {
       if (snapTurnDebounce <= 0f)
       {
+         Vector3 currentBallSource = transform.TransformPoint(ballOffset);
+
          transform.Rotate(0, Mathf.Sign(inputX) * 45, 0);
 
          Vector3 offsetFromBall = transform.TransformVector(-ballOffset);
-         transform.position = GameMgr.Instance.golfBall.transform.position + offsetFromBall;
+         transform.position = currentBallSource + offsetFromBall;
 
          snapTurnDebounce = snapTurnDebounceTimeSeconds;
       } else
@@ -89,6 +93,8 @@ public class Player : MonoBehaviour
 
       transform.rotation = facing;
       transform.position = ballPosition + facing * relativePosition;
+
+      miniature.PlayerTransformUpdated();
    }
    void DoRecallBall()
    {
