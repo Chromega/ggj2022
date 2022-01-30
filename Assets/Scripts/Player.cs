@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
 
    Vector3 ballOffset = new Vector3(.5f, 0f, 0f);
 
+   public ParticleSystem dustExplosion;
+
    // Start is called before the first frame update
    void Start()
    {
@@ -126,5 +128,12 @@ public class Player : MonoBehaviour
       Vector3 relativePosition = ballOffset;
       Vector3 worldPosition = transform.TransformPoint(relativePosition);
       return worldPosition;
+   }
+
+   public void DustEffect()
+   {
+      // spawn the dust explosion
+      dustExplosion.transform.position = GameMgr.Instance.golfBall.GetComponent<Rigidbody>().position;
+      dustExplosion.Play();
    }
 }

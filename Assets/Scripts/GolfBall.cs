@@ -62,6 +62,9 @@ public class GolfBall : MonoBehaviour
 
       // Respawn a new ghost ball
       GameMgr.Instance.ReturnGhostBall();
+
+      // Do the dust effect
+      GameMgr.Instance.player.DustEffect();
    }
 
    // Update is called once per frame
