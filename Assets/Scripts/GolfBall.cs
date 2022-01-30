@@ -21,6 +21,7 @@ public class GolfBall : MonoBehaviour
    public Material originalMaterial;
 
    public AudioClip sfxBallHit;
+   public AudioClip sfxBallGround;
 
    bool isClosestBallToPlayer()
    {
@@ -129,6 +130,7 @@ public class GolfBall : MonoBehaviour
       if (collision.collider.gameObject.layer == 8 || collision.collider.gameObject.layer == 10) //planetoid
       {
          lastPlanetoid = collision.collider.gameObject.GetComponentInParent<Planetoid>();
+         GetComponent<AudioSource>().PlayOneShot(sfxBallGround);
       }
       else if (collision.collider.gameObject.layer == 7) //golf club
       {
