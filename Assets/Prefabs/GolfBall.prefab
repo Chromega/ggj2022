@@ -10565,15 +10565,15 @@ MonoBehaviour:
     type: 3}
   mainAudioSource: {fileID: 6159447931029869503}
   burningAudioSource: {fileID: 4138334060776740530}
-  sfxBallHit:
+  sfxBallHitHard:
     clips:
     - {fileID: 8300000, guid: 2a87f8907aa0b4cf18262b8d30ae5b2c, type: 3}
     - {fileID: 8300000, guid: 1fe9e32fdd8a24fd19e545a32ec613eb, type: 3}
     - {fileID: 8300000, guid: 9ecef5e9c6ff045758e641817fb27ccd, type: 3}
     - {fileID: 8300000, guid: 2ca57ce85e0ec455faf35d8b46dd56f6, type: 3}
+  sfxBallHitSoft:
+    clips:
     - {fileID: 8300000, guid: 202a236250bcb46818254aaac25d80f4, type: 3}
-    - {fileID: 8300000, guid: 563e06709ee3141478980605bfa53761, type: 3}
-    - {fileID: 8300000, guid: cf2060ba803be4551a8decb2997dc35a, type: 3}
   sfxBallGround:
     clips:
     - {fileID: 8300000, guid: 70840f38492784e6fad5dab85b66150b, type: 3}
@@ -10585,6 +10585,7 @@ MonoBehaviour:
     clips:
     - {fileID: 8300000, guid: 850e136ddefa042ec887d7ff8e7768c9, type: 3}
     - {fileID: 8300000, guid: 1ad530b297d5945e7a262cd4f9f13228, type: 3}
+  sfxHardHitThreshold: 3
 --- !u!82 &6159447931029869503
 AudioSource:
   m_ObjectHideFlags: 0
