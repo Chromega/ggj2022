@@ -30,6 +30,18 @@ public class GameMgr : MonoBehaviour
       planetoids.Add(p);
    }
 
+   public void ToggleBgMusic()
+   {
+      AudioSource audioSource = GetComponent<AudioSource>();
+      if (!audioSource.isPlaying)
+      {
+         audioSource.Play();
+      } else
+      {
+         audioSource.Stop();
+      }
+   }
+
    public Planetoid GetClosestPlanetoid(Vector3 pos)
    {
       Planetoid bestPlanetoid = null;

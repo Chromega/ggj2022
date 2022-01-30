@@ -25,9 +25,11 @@ public class GolfBall : MonoBehaviour
    public AudioSource mainAudioSource;
    public AudioSource burningAudioSource;
 
-   public AudioClipPool sfxBallHit;
+   public AudioClipPool sfxBallHitHard;
+   public AudioClipPool sfxBallHitSoft;
    public AudioClipPool sfxBallGround;
    public AudioClipPool sfxBurning;
+   public float sfxHardHitThreshold = 3f;
 
    bool isClosestBallToPlayer()
    {
@@ -60,10 +62,11 @@ public class GolfBall : MonoBehaviour
 
    }
 
-   public void CheckGhostCollision()
+   void CheckGhostCollision(float velocityMagnitude)
    {
       // Enable the golf ball to have gravity
-      GetComponent<Rigidbody>().useGravity = true;
+      Rigidbody rb = GetComponent<Rigidbody>();
+      rb.useGravity = true;
 
       // Set this ball as the active ball, and the other ball as the ghost ball
       if (isGhostBall())
@@ -76,7 +79,14 @@ public class GolfBall : MonoBehaviour
 
       // Do the VFX and SFX effect
       GameMgr.Instance.player.DustEffect();
-      mainAudioSource.PlayOneShot(sfxBallHit.GetClip());
+
+      if (velocityMagnitude > sfxHardHitThreshold)
+      {
+         mainAudioSource.PlayOneShot(sfxBallHitHard.GetClip());
+      } else
+      {
+         mainAudioSource.PlayOneShot(sfxBallHitSoft.GetClip());
+      }
    }
 
    // Update is called once per frame
@@ -90,11 +100,12 @@ public class GolfBall : MonoBehaviour
       {
          // Hit the golf ball
          Vector3 direction = Camera.main.transform.forward;
-         rb.AddForce(direction * chargeTime * 3f, ForceMode.Impulse);
+         Vector3 impulse = direction * chargeTime * 3f;
+         rb.AddForce(impulse, ForceMode.Impulse);
          chargeTime = 0;
 
          // Set this ball as the active ball, and the other ball as the ghost ball
-         CheckGhostCollision();
+         CheckGhostCollision(impulse.magnitude);
       }
 
       {
@@ -155,7 +166,7 @@ public class GolfBall : MonoBehaviour
       }
       else if (collision.collider.gameObject.layer == 7) //golf club
       {
-         CheckGhostCollision();
+         CheckGhostCollision(collision.relativeVelocity.magnitude);
       }
    }
 
