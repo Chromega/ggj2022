@@ -15,21 +15,8 @@ public class GolfBall : MonoBehaviour
 
    float burnTimeRemaining;
 
-   // Use to calculate spawning a cloned ghost ball for convenience
-   public float timeBeforeNewBallSpawns;
-   public float distanceBeforeGhostBallSpawns = 3f;
-   Coroutine releasedCoroutine;
-   float prevDistToPlayer = 0f;
    public Material ghostMaterial;
-   Material originalMaterial;
-
-   IEnumerator SpawnGhostBall()
-   {
-      yield return new WaitForSeconds(timeBeforeNewBallSpawns);
-      GolfBall ghostBall = GameMgr.Instance.GetGhostBall();
-      ghostBall.gameObject.SetActive(true);
-      ghostBall.Reset();
-   }
+   public Material originalMaterial;
 
    bool isClosestBallToPlayer()
    {
@@ -37,47 +24,44 @@ public class GolfBall : MonoBehaviour
       return GameObject.ReferenceEquals(gameObject, closestBall.gameObject);
    }
 
-   bool isActiveBall()
+   bool isGhostBall()
    {
-      GolfBall gb = GameMgr.Instance.golfBall;
+      GolfBall gb = GameMgr.Instance.GetGhostBall();
       return GameObject.ReferenceEquals(gameObject, gb.gameObject);
    }
 
-   public void DelaySpawnGhost()
+   public void ToggleMaterial(bool setAsMainBall)
    {
-      if (releasedCoroutine != null)
-      {
-         StopCoroutine(releasedCoroutine);
-         releasedCoroutine = null;
-      }
-      releasedCoroutine = StartCoroutine(SpawnGhostBall());
-   }
-
-   void SetThisBallAsActive()
-   {
-      // Set this ball as the active ball, and the other ball as the ghost ball
-      GolfBall otherBall = GameMgr.Instance.GetOtherBall(this);
-      GameMgr.Instance.golfBall = this;
-      GameMgr.Instance.SetGhostBall(otherBall);
-      otherBall.gameObject.SetActive(false);
-      gameObject.SetActive(true);
-   }
-
-   void Start()
-   {
-      originalMaterial = transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material;
-   }
-
-   void ToggleAsMainBall(bool setAsMainBall)
-   {
+      // Flip whether a ghost or regular material
       if (setAsMainBall)
       {
-         transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material = originalMaterial;
+         foreach (MeshRenderer r in transform.GetChild(0).GetComponentsInChildren<MeshRenderer>())
+         {
+            r.sharedMaterial = originalMaterial;
+         }
       } else
       {
-         transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material = ghostMaterial;
+         foreach (MeshRenderer r in transform.GetChild(0).GetComponentsInChildren<MeshRenderer>())
+         {
+            r.sharedMaterial = ghostMaterial;
+         }
       }
 
+   }
+
+   public void CheckGhostCollision()
+   {
+      // Enable the golf ball to have gravity
+      GetComponent<Rigidbody>().useGravity = true;
+
+      // Set this ball as the active ball, and the other ball as the ghost ball
+      if (isGhostBall())
+      {
+         GameMgr.Instance.SwapGhostBall();
+      }
+
+      // Respawn a new ghost ball
+      GameMgr.Instance.ReturnGhostBall();
    }
 
    // Update is called once per frame
@@ -94,11 +78,8 @@ public class GolfBall : MonoBehaviour
          rb.AddForce(direction * chargeTime * 3f, ForceMode.Impulse);
          chargeTime = 0;
 
-         // Enable the golf ball to have gravity
-         GetComponent<Rigidbody>().useGravity = true;
-
          // Set this ball as the active ball, and the other ball as the ghost ball
-         SetThisBallAsActive();
+         CheckGhostCollision();
       }
 
       var emission = entryBurnFx.emission;
@@ -107,17 +88,6 @@ public class GolfBall : MonoBehaviour
       burnTimeRemaining -= Time.deltaTime;
       
       closestPlanetoid = GameMgr.Instance.GetClosestPlanetoid(transform.position);
-
-      if (isActiveBall())
-      {
-         float distToPlayer = Vector3.Distance(GameMgr.Instance.player.transform.position, transform.position);
-         if (prevDistToPlayer < distanceBeforeGhostBallSpawns && distToPlayer > distanceBeforeGhostBallSpawns)
-         {
-            // spawn the ghost ball back at the original player
-            DelaySpawnGhost();
-         }
-         prevDistToPlayer = distToPlayer;
-      }
    }
 
    private void FixedUpdate()
@@ -137,8 +107,7 @@ public class GolfBall : MonoBehaviour
       }
       else if (collision.collider.gameObject.layer == 7) //golf club
       {
-         GetComponent<Rigidbody>().useGravity = true;
-         SetThisBallAsActive();
+         CheckGhostCollision();
       }
    }
 
