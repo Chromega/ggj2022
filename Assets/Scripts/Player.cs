@@ -15,12 +15,14 @@ public class Player : MonoBehaviour
    float snapTurnDebounce = 0f;
 
    Vector3 ballOffset = new Vector3(.5f, 0f, 0f);
+   Vector3 initialRotationOffset;
 
    public ParticleSystem dustExplosion;
 
    // Start is called before the first frame update
    void Start()
    {
+      initialRotationOffset = transform.rotation.eulerAngles;
    }
 
    // Update is called once per frame
@@ -95,7 +97,13 @@ public class Player : MonoBehaviour
       Vector3 relativePosition = -ballOffset;
 
       transform.rotation = facing;
-      transform.position = ballPosition + facing * relativePosition;
+
+      // The issue is that 'facing' assumes that we want to 'face' the ball, however, the scene has the
+      // initial player parent object rotated! So the rotation is correct for the *VR Player* camera,
+      // but it is incorrect for the actual parent object.
+      transform.Rotate(initialRotationOffset);
+      transform.position = ballPosition + transform.rotation * relativePosition;
+      
 
       // Make sure to move the ghost ball with the player
       GameMgr.Instance.ReturnGhostBall();
