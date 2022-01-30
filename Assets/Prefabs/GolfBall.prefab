@@ -10559,6 +10559,7 @@ MonoBehaviour:
   rb: {fileID: 8655648276622337216}
   entryBurnFx: {fileID: 4466754785221216185}
   onFireFx: {fileID: 9097695547811283298}
+  attractor: {fileID: 5831241837891197124}
   ghostMaterial: {fileID: 2100000, guid: 4595d6ae0ea9ace43800ea798618e806, type: 2}
   originalMaterial: {fileID: 1729539985930006749, guid: 090f5475710f34fe2ae8d8f86e768594,
     type: 3}

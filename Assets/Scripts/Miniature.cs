@@ -124,7 +124,8 @@ public class Miniature : Pickupable
 
    public void PlayerTransformUpdated()
    {
-      transform.rotation = currentPlanetoid.transform.rotation;
+      if (currentPlanetoid)
+         transform.rotation = currentPlanetoid.transform.rotation;
    }
 
 }

@@ -12,6 +12,8 @@ public class GolfBall : MonoBehaviour
    public ParticleSystem entryBurnFx;
    public ParticleSystem onFireFx;
 
+   public GameObject attractor;
+
    float chargeTime;
 
    float burnTimeRemaining;
@@ -116,6 +118,8 @@ public class GolfBall : MonoBehaviour
          else
             Ignite();
       }
+
+      attractor.SetActive(GameMgr.Instance.golfBall == this);
    }
 
    public static bool IsOnFire()
