@@ -95,6 +95,9 @@ public class Player : MonoBehaviour
       transform.rotation = facing;
       transform.position = ballPosition + facing * relativePosition;
 
+      // Make sure to move the ghost ball with the player
+      GameMgr.Instance.ReturnGhostBall();
+
       miniature.PlayerTransformUpdated();
    }
    void DoRecallBall()
