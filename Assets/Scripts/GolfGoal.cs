@@ -7,6 +7,8 @@ public class GolfGoal : MonoBehaviour
    public GameObject visual;
    public ParticleSystem explodeFx;
 
+   public AudioClipPool sfxCollectSound;
+
    Planetoid planetoid;
 
    public bool collected = false;
@@ -24,6 +26,10 @@ public class GolfGoal : MonoBehaviour
          explodeFx.Play();
          collected = true;
          planetoid.NotifyOnGoalCollected(this);
+
+         // audio fx
+         AudioSource audioSource = GetComponent<AudioSource>();
+         audioSource.PlayOneShot(sfxCollectSound.GetClip());
       }
    }
 
