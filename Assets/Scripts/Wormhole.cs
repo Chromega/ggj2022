@@ -12,6 +12,7 @@ public class Wormhole : MonoBehaviour
     public bool canWarp = true;
     public Vector3 scaleChange;
     public Vector3 originalScale;
+    public AudioClip sfxWarp;
     void Start() {
         originalScale = gameObject.transform.localScale;
         scaleChange = new Vector3((originalScale.x)*-0.00025f, (originalScale.y)*-0.00025f, (originalScale.z)*-0.00025f);
@@ -40,6 +41,7 @@ public class Wormhole : MonoBehaviour
     private void OnTriggerExit() {
         this.canWarp = true;
         warpFX.Play();
-    }
+        GetComponent<AudioSource>().PlayOneShot(sfxWarp);
+   }
 
 }
