@@ -158,7 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canDoEntryBurn: 1
   surfaceRadius: 10
-  surfaceGForce: 1
+  surfaceGForce: 0.75
   burnRadius: 20
 --- !u!1 &3408821054528895819
 GameObject:
