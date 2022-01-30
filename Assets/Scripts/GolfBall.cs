@@ -63,6 +63,23 @@ public class GolfBall : MonoBehaviour
       gameObject.SetActive(true);
    }
 
+   void Start()
+   {
+      originalMaterial = transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material;
+   }
+
+   void ToggleAsMainBall(bool setAsMainBall)
+   {
+      if (setAsMainBall)
+      {
+         transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material = originalMaterial;
+      } else
+      {
+         transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material = ghostMaterial;
+      }
+
+   }
+
    // Update is called once per frame
    void Update()
    {
