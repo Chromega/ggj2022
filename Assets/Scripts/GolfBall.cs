@@ -104,6 +104,14 @@ public class GolfBall : MonoBehaviour
       burnTimeRemaining -= Time.deltaTime;
       
       closestPlanetoid = GameMgr.Instance.GetClosestPlanetoid(transform.position);
+
+      if (Input.GetKeyDown(KeyCode.F))
+      {
+         if (IsOnFire())
+            Extinguish();
+         else
+            Ignite();
+      }
    }
 
    public static bool IsOnFire()
@@ -115,6 +123,11 @@ public class GolfBall : MonoBehaviour
    {
       fireEndTime = 0;
    }
+   public static void Ignite()
+   {
+      fireEndTime = Time.realtimeSinceStartupAsDouble + 60;
+   }
+
 
    private void FixedUpdate()
    {
@@ -175,7 +188,7 @@ public class GolfBall : MonoBehaviour
 
       if (other.tag == "Fire")
       {
-         fireEndTime = Time.realtimeSinceStartupAsDouble + 60;
+         Ignite();
       }
    }
 }

@@ -964,7 +964,7 @@ MonoBehaviour:
   miniature: {fileID: 940121681043051771}
   snapTurnDeadZone: 0.125
   snapTurnDebounceTimeSeconds: 1
-  dustExplosion: {fileID: 0}
+  dustExplosion: {fileID: 8919845330485894813}
 --- !u!1 &6610483346527128601
 GameObject:
   m_ObjectHideFlags: 0
@@ -1784,6 +1784,12 @@ PrefabInstance:
 --- !u!4 &8721078923505003145 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4203849390966504, guid: d8f0099df63275647a8bcf646df1ca00,
+    type: 3}
+  m_PrefabInstance: {fileID: 8721660980868295777}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8919845330485894813 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198220379293217532, guid: d8f0099df63275647a8bcf646df1ca00,
     type: 3}
   m_PrefabInstance: {fileID: 8721660980868295777}
   m_PrefabAsset: {fileID: 0}
