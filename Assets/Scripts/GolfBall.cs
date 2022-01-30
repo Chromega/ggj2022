@@ -20,6 +20,9 @@ public class GolfBall : MonoBehaviour
    public Material ghostMaterial;
    public Material originalMaterial;
 
+   public AudioClip sfxBallHit;
+   public AudioClip sfxBallGround;
+
    bool isClosestBallToPlayer()
    {
       GolfBall closestBall = GameMgr.Instance.GetClosestBallToPlayer();
@@ -64,6 +67,10 @@ public class GolfBall : MonoBehaviour
 
       // Respawn a new ghost ball
       GameMgr.Instance.ReturnGhostBall();
+
+      // Do the VFX and SFX effect
+      GameMgr.Instance.player.DustEffect();
+      GetComponent<AudioSource>().PlayOneShot(sfxBallHit);
    }
 
    // Update is called once per frame
@@ -123,6 +130,7 @@ public class GolfBall : MonoBehaviour
       if (collision.collider.gameObject.layer == 8 || collision.collider.gameObject.layer == 10) //planetoid
       {
          lastPlanetoid = collision.collider.gameObject.GetComponentInParent<Planetoid>();
+         GetComponent<AudioSource>().PlayOneShot(sfxBallGround);
       }
       else if (collision.collider.gameObject.layer == 7) //golf club
       {
