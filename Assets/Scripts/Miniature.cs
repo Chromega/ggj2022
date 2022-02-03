@@ -32,6 +32,7 @@ public class Miniature : Pickupable
       golfBallCopy.GetComponent<Collider>().enabled = false;
       golfBallCopy.GetComponent<Rigidbody>().isKinematic = true;
       golfBallCopy.onFireFx.gameObject.SetActive(false);
+      golfBallCopy.entryBurnFx.gameObject.SetActive(false);
       golfBallCopy.trail.enabled = false;
    }
 
